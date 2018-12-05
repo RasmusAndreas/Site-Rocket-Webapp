@@ -2,23 +2,23 @@
     <v-form v-model="valid">
         <v-text-field
             v-model="email"
-            :rules="[rules.required, rules.email]"
+            :rules="emailRules"
             label="E-mail"
-            hint="Account E-mail"
-            @click:append="show = !show"
-        ></v-text-field>
+            required
+            ></v-text-field>
         <v-text-field
             v-model="password"
             :append-icon="show ? 'visibility_off' : 'visibility'"
-            :rules="[rules.required, rules.min]"
+            :rules="[passRules.required]"
             :type="show ? 'text' : 'password'"
-            name="input-10-1"
             label="Password"
-            hint="At least 8 characters"
-            counter
             @click:append="show = !show"
           ></v-text-field>
-          <v-btn color="red">Login</v-btn>
+          <div v-if="error">{{ error }}</div>
+          <router-link class="forgot-link" :to="{ name: 'forgot' }">Forgot password</router-link>
+          <v-btn 
+            @click.prevent="login"
+            >Login</v-btn>
     </v-form>
 </template>
 
@@ -27,19 +27,34 @@ export default {
     name: 'login-form',
     data() {
         return {
+            valid: false,
             email: '',
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /.+@.+/.test(v) || 'E-mail must be valid'
+            ],
             password: '',
             show: false,
-            rules: {
+            passRules: {
                 required: value => !!value || 'Required.',
-                min: v => v.length >= 8 || 'Min 8 characters',
-                emailMatch: () => ('The email and password you entered don\'t match'),
-                email: value => {
-                    const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                    return pattern.test(value) || 'Invalid e-mail.'
-                }
-            }
+            },
+            error: '',
+        }
+    },
+    methods: {
+        login() {
+            this.$store.dispatch('retrieveToken', {
+                email: this.email,
+                password: this.password,
+            }).then(() => {
+                this.$router.push({ name: 'dashboard' })
+            }).catch(error => {
+                this.error = 'E-mail or password is incorrect'
+                // eslint-disable-next-line
+                console.log(error.response.data.message)
+            })
         }
     }
 }
 </script>
+
