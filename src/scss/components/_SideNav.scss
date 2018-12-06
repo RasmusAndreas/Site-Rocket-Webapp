@@ -1,9 +1,19 @@
 .side-nav {
-    
+    background-color: $primary;
+    &__top {
+        background-color: $primary;
+    }
+    &__main {
+        background: $primary;
+    }
 }
 .nav-websites {
     padding-left: 80px;
 }
-.active {
-    background-color: red;
+.nav-item {
+    border-left: 5px solid transparent;
+    &.active {
+        border-left: 5px solid $secondary;
+        background-color: $primary;
+    }
 }
