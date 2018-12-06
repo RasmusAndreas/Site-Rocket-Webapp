@@ -1,5 +1,7 @@
 <template>
-    <div>WOW {{ $route.params.id}}</div>
+    <div>
+        <!-- <div>WOW {{ $route.params.id}}</div> -->
+    </div>
 </template>
 
 <script>
