@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Dashboard from './views/Dashboard.vue'
 import Forgot from './views/Forgot.vue'
 import Website from './views/Website.vue'
+import Reset from './views/Reset.vue'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/forgot',
       name: 'forgot',
       component: Forgot,
+    },
+    {
+      path: '/reset/:email/:resetToken',
+      name: 'reset',
+      component: Reset,
     },
     {
       path: '/login',

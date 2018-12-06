@@ -1,18 +1,18 @@
 <template>
   <side-panel :overlay="true">
-        <forgot-form />
+        <reset-form />
     </side-panel>
 </template>
 
 <script>
 import SidePanel from '../components/SidePanel.vue';
-import ForgotForm from '../components/ForgotForm.vue';
+import ResetForm from '../components/ResetForm.vue';
 
 export default {
   name: 'forgot',
   components: {
         SidePanel,
-        ForgotForm,
+        ResetForm,
     }
 }
 </script>

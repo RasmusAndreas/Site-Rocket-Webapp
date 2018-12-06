@@ -5,8 +5,8 @@
       <router-link class="nav-item" to="/login" v-if="!loggedIn">Login</router-link>
       <router-link class="nav-item" to="/login" v-if="loggedIn">Logout</router-link>
     </div> -->
-    <v-navigation-drawer permanent height="100vh">
-    <v-toolbar flat>
+    <v-navigation-drawer permanent height="100vh" class="side-nav">
+    <v-toolbar flat class="side-nav__top" :light="false">
       <v-list>
         <v-list-tile>
           <v-list-tile-title class="logo">
@@ -17,7 +17,7 @@
     </v-toolbar>
 
     <v-divider></v-divider>
-    <v-list dense class="pt-0">
+    <v-list dense class="pt-0 side-nav__main">
       <v-list-tile
         v-for="item in items"
         :key="item.title"
@@ -83,6 +83,7 @@ export default {
     }
 }
 </script>
+
 
 
 
