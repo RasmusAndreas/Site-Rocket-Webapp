@@ -4,12 +4,12 @@
             <div class="domain-search__input">
                 <input type="text" class="domain-search__field" placeholder="Search domains" v-model="searchString" v-focus @keyup.esc="close" />
             </div>
-            <div class="domain-search__list">
-                <div v-if="searchResult.length > 0" ref="test" class="domain-search__item" v-for="website in searchResult" :key="website.id" @click="navigateTo(website.id)">
+            <div class="domain-search__list" v-if="searchResult.length > 0">
+                <div class="domain-search__item" v-for="website in searchResult" :key="website.id" @click="navigateTo(website.id)">
                     {{ website.websiteName }}
                 </div>
-                <div class="domain-search__item" v-if="searchResult.length == 0">Sorry, no results</div>
             </div>
+            <div class="domain-search__item" v-if="searchResult.length == 0">Sorry, no results</div>
         </div>
         <div class="overlay" @click="close"></div>
     </div>
