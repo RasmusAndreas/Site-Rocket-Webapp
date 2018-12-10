@@ -24,6 +24,7 @@ export default new Vuex.Store({
     },
     destroyToken(state) {
       state.token = null;
+      state.websites = null;
     }
   },
   actions: {
