@@ -2,7 +2,7 @@
   <div id="app">
     <div v-if="$store.getters.loggedIn">
       <side-nav />
-      <div class="container">
+      <div class="app-container">
         <top-bar />
         <router-view/>
       </div>
