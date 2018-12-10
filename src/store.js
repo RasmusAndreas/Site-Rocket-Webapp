@@ -25,6 +25,9 @@ export default new Vuex.Store({
     destroyToken(state) {
       state.token = null;
       state.websites = null;
+    },
+    addWebsite(state, website) {
+      state.websites.push(website);
     }
   },
   actions: {
@@ -92,6 +95,23 @@ export default new Vuex.Store({
           })
         })
       }
-    }
+    },
+    addWebsite(context, websitedata) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
+
+      return new Promise((resolve, reject) => {
+        axios.post('/api/websites', {
+          websiteName: websitedata.websiteName,
+          domain: websitedata.domain,
+          featureSettings: websitedata.featureSettings,
+          reportLink: websitedata.reportLink
+        }).then(response => {
+          context.commit('addWebsite', response.data);
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      });
+    },
   }
 })
