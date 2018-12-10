@@ -6,12 +6,10 @@
       <router-link class="nav-item" to="/login" v-if="loggedIn">Logout</router-link>
     </div> -->
     <v-navigation-drawer permanent height="100vh" class="side-nav">
-    <v-toolbar flat class="side-nav__top" :light="false">
+    <v-toolbar flat dark class="side-nav__top">
       <v-list>
         <v-list-tile>
-          <v-list-tile-title class="logo">
-            SITEROCKET LOGO
-          </v-list-tile-title>
+          <img class="logo-siterocket" src="../assets/siterocket_logo.png">
         </v-list-tile>
       </v-list>
     </v-toolbar>
@@ -19,6 +17,7 @@
     <v-divider></v-divider>
     <v-list dense class="pt-0 side-nav__main">
       <v-list-tile
+        class="main-nav-item"
         v-for="item in items"
         :key="item.title"
         @click="navigateTo(item.path)"
@@ -56,8 +55,8 @@ export default {
     data () {
       return {
         items: [
-          { title: 'Dashboard', icon: 'dashboard', path: '/' },
-          { title: 'Domains', icon: 'question_answer', path: '/' }
+          { title: 'Dashboard', icon: 'home', path: '/' },
+          { title: 'Domains', icon: 'public', path: '/' }
         ],
         right: null,
         websites: [],
@@ -77,8 +76,6 @@ export default {
         this.$store.dispatch('getWebsites')
         .then(websites => {
             this.websites = websites;
-            // eslint-disable-next-line
-            console.log(websites);
         });
     }
 }

@@ -4,8 +4,11 @@
         background-color: $primary;
     }
     &__main {
-        background: $primary;
+        background-color: $primary;
     }
+}
+.main-nav-item {
+    padding: 5px 0 5px 0;
 }
 .nav-websites {
     padding-left: 80px;
@@ -16,4 +19,7 @@
         border-left: 5px solid $secondary;
         background-color: $primary;
     }
+}
+.logo-siterocket {
+    height: 35px;
 }

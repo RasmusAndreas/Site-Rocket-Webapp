@@ -21,6 +21,9 @@ export default new Vuex.Store({
     },
     getWebsites(state, websites) {
       state.websites = websites;
+    },
+    destroyToken(state) {
+      state.token = null;
     }
   },
   actions: {
@@ -52,6 +55,42 @@ export default new Vuex.Store({
           reject(error)
         })
       })
+    },
+    signup(context, credentials) {
+      return new Promise((resolve, reject) => {
+        axios.post('/api/register', {
+          grant_type: 'password',
+          client_id: '2',
+          client_secret: 'tMGzy0M2XBkPsrQQDGZSpJWuzqB1IuVVO9I6fOlV',
+          email: credentials.email,
+          password: credentials.password,
+          name: credentials.name,
+        }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    destroyToken(context) {
+      if (context.getters.loggedIn) {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
+
+        return new Promise((resolve, reject) => {
+          axios.post('/api/logout', {
+
+          })
+          .then((response) => {
+            localStorage.removeItem('token');
+            context.commit('destroyToken');
+            resolve(response);
+          }).catch(error => {
+            localStorage.removeItem('token');
+            context.commit('destroyToken');
+            reject(error);
+          })
+        })
+      }
     }
   }
 })

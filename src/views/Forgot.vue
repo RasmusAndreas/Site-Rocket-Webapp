@@ -1,5 +1,5 @@
 <template>
-  <side-panel :overlay="true">
+  <side-panel :overlay="false">
         <forgot-form />
     </side-panel>
 </template>

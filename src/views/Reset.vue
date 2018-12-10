@@ -1,5 +1,5 @@
 <template>
-  <side-panel :overlay="true">
+  <side-panel :overlay="false">
         <reset-form />
     </side-panel>
 </template>

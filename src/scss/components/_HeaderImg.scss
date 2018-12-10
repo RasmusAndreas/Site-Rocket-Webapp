@@ -1,0 +1,24 @@
+.header-img {
+    height: 100vh;
+    position: relative;
+    right: 5%;
+    animation-name: headerimg;
+    animation-duration: 120s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.logo-siterocket {
+    &__on-top {
+        z-index: 3;
+        position: fixed;
+        top: 16px;
+        left: 16px;
+    }
+}
+
+@keyframes headerimg {
+    0% {right: 5%;}
+    50% {right: 70%;}
+    100% {right: 5%;}
+}

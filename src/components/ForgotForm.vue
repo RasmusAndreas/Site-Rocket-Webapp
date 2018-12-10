@@ -9,6 +9,7 @@
             <v-btn 
             @click.prevent="forgot"
             >Send reset link</v-btn>
+            <v-btn @click="navigateTo('/login')" outline>BACK TO LOGIN</v-btn>
     </v-form>
 </template>
 
@@ -47,6 +48,9 @@ export default {
                 // eslint-disable-next-line
                 console.log('En eller anden besked');
             }
+        },
+        navigateTo(path) {
+            this.$router.push(path);
         }
     }
 }

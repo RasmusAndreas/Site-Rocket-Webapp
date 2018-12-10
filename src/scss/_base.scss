@@ -11,4 +11,10 @@
     color: $text;
     position: relative;
     font-size: 16px;
+    overflow: hidden;
+}
+
+.header-caps {
+    color: $primary;
+    letter-spacing: 3px;
 }

@@ -15,25 +15,49 @@ export default new Router({
       path: '/',
       name: 'dashboard',
       component: Dashboard,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/website/:id',
+      name: 'website',
       component: Website,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/forgot',
       name: 'forgot',
       component: Forgot,
+      meta: {
+        requiresVisitor: true,
+      },
     },
     {
       path: '/reset/:email/:resetToken',
       name: 'reset',
       component: Reset,
+      meta: {
+        requiresVisitor: true,
+      },
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import(/* webpackChunkName: "login" */ './views/Login.vue')
+      component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
+      meta: {
+        requiresVisitor: true,
+      },
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: () => import(/* webpackChunkName: "login" */ './views/Signup.vue'),
+      meta: {
+        requiresVisitor: true,
+      },
     },
     {
       path: '/about',

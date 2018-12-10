@@ -1,18 +1,19 @@
 <template>
     <side-panel :overlay="false">
-        <login-form />
+        <signup-form />
     </side-panel>
 </template>
 
 <script>
 import SidePanel from '../components/SidePanel.vue';
-import LoginForm from '../components/LoginForm.vue';
+import SignupForm from '../components/SignupForm.vue';
 
 export default {
-    name: 'login',
+    name: 'sign-up',
     components: {
         SidePanel,
-        LoginForm,
+        SignupForm,
     }
+
 }
 </script>
