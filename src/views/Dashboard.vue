@@ -26,10 +26,10 @@
         <add-new-step-one @nextData="nextData"></add-new-step-one>
       </side-panel>
       <side-panel v-if="step === 2" @closePanel="showPanel = false">
-        <add-new-step-two :name="name" :domain="domain"  @next="next"></add-new-step-two>
+        <add-new-step-two :name="name" :domain="domain"  @nextCreated="nextCreated"></add-new-step-two>
       </side-panel>
       <side-panel v-if="step === 3" @closePanel="showPanel = false">
-        <add-new-step-three @next="next"></add-new-step-three>
+        <add-new-step-three :newWebsite="newWebsite" @next="next"></add-new-step-three>
       </side-panel>
       <side-panel v-if="step === 4" @closePanel="showPanel = false">
         <add-new-step-four @next="next"></add-new-step-four>
@@ -53,6 +53,7 @@ export default {
       step: 1,
       name: '',
       domain: '',
+      newWebsite: {},
     }
   },
   components: {
@@ -74,6 +75,10 @@ export default {
       // eslint-disable-next-line
       this.name = data.name;
       this.domain = data.domain;
+      this.step++;
+    },
+    nextCreated(data) {
+      this.newWebsite = data.newWebsite;
       this.step++;
     },
     next() {

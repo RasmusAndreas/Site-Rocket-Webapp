@@ -96,9 +96,7 @@ export default {
                 featureSettings: this.settings,
                 reportLink: 'NEEDS TO BE DONE',
             }).then(response => {
-                // this.$emit('next');
-                // eslint-disable-next-line
-                console.log(response.data);
+                this.$emit('nextCreated', {newWebsite: response.data});
             }).catch(error => {
                 this.error = 'E-mail or password is incorrect'
                 // eslint-disable-next-line

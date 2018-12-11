@@ -1,7 +1,36 @@
 <template>
     <div>
-        Hej 3
-        <v-btn @click="next">Next step</v-btn>
+        <h1 class="header-caps">BLAST OFF!</h1>
+        <p>The website is now added, and ready to receive data.</p>
+        <table>
+            <tr>
+                <td>Website name:</td>
+                <td>{{ newWebsite.websiteName }}</td>
+            </tr>
+            <tr>
+                <td>Domain:</td>
+                <td>{{ newWebsite.domain }}</td>
+            </tr>
+            <tr>
+                <td>Uptime</td>
+                <td v-if="settings.uptime == 1">Enabled</td>
+            </tr>
+            <tr>
+                <td>Seo</td>
+                <td v-if="settings.seo == 1">Enabled</td>
+            </tr>
+            <tr>
+                <td>Loadspeed</td>
+                <td v-if="settings.loadtime == 1">Enabled</td>
+            </tr>
+            <tr>
+                <td>Max. loadspeed</td>
+                <td>{{ settings.maxload / 1000 }} seconds</td>
+            </tr>
+        </table>
+        <p>To start receiving data, make sure to integrate the SiteRocket tracking script on your website.</p>
+        <v-btn @click="navigateTo('/website/'+newWebsite.id+'/settings')">Change settings</v-btn>
+        <v-btn @click="next">Integration</v-btn>
     </div>
 </template>
 
@@ -11,6 +40,26 @@ export default {
     methods: {
         next() {
             this.$emit('next');
+        },
+        navigateTo(path) {
+            this.$router.push(path);
+        },
+    },
+    props: {
+        newWebsite: {
+            type: Object,
+            required: true,
+        }
+    },
+    computed: {
+        settings() {
+            const settingsSplit = this.newWebsite.featureSettings.split(';');
+            var obj = {};
+            for (var i = 0; i < settingsSplit.length; i++) {
+                var split = settingsSplit[i].split(':');
+                obj[split[0]] = split[1];
+            }
+            return obj;
         }
     },
 }
