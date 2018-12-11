@@ -14,16 +14,19 @@
             <tr>
                 <td>Uptime</td>
                 <td v-if="settings.uptime == 1">Enabled</td>
+                <td v-else-if="settings.uptime == 0">Disabled</td>
             </tr>
             <tr>
                 <td>Seo</td>
                 <td v-if="settings.seo == 1">Enabled</td>
+                <td v-else-if="settings.seo == 0">Disabled</td>
             </tr>
             <tr>
                 <td>Loadspeed</td>
                 <td v-if="settings.loadtime == 1">Enabled</td>
+                <td v-else-if="settings.loadtime == 0">Disabled</td>
             </tr>
-            <tr>
+            <tr v-if="settings.maxload">
                 <td>Max. loadspeed</td>
                 <td>{{ settings.maxload / 1000 }} seconds</td>
             </tr>
@@ -39,7 +42,7 @@ export default {
     name: 'add-new-step-three',
     methods: {
         next() {
-            this.$emit('next');
+            this.$emit('nextIntegrate');
         },
         navigateTo(path) {
             this.$router.push(path);

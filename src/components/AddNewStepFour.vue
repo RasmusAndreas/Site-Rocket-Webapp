@@ -3,15 +3,13 @@
         <h1 class="header-caps">INTEGRATION</h1>
         <p>Use the snippet below to integrate the monitoring on your website.</p>
         <v-textarea
+            @focus="$event.target.select()"
             readonly
             :rows="13"
             class="snippet"
             name="input-7-1"
             label="Integration snippet"
-            value="<!-- Start Site-Rocket Tracking Pixel -->
-    <script>window.onload=function(){var loadTime = window.performance.timing.domComplete-window.performance.timing.navigationStart;var websiteID='3';var apiKey = '241XeOQLeSnxGUKx3AbOr4iedpQvd0dsith1543237346';var pixelUrl='http://sovid.dk/scraper.php';document.getElementById('siterocket').src=pixelUrl+'?website='+websiteID+'&apikey='+apiKey+'&loadtime='+loadTime;}</script>
-    <img style='opacity: 0;' id='siterocket' />
-    <!-- End Site-Rocket Tracking Pixel -->"
+            :value="snippet"
         ></v-textarea>
         <p>The snippet has to be inserted before the &#60;/body> on all pages that needs to be tracked.</p>
         <v-btn @click="next">Done</v-btn>
@@ -21,9 +19,32 @@
 <script>
 export default {
     name: 'add-new-step-four',
+    data() {
+        return {
+            apikey: this.$store.state.user.apikey,
+        }
+    },
     methods: {
         next() {
-            this.$emit('next');
+            this.$emit('nextFinal');
+        }
+    },
+    computed: {
+        snippet() {
+            const startcomment = '<!-- Start Site-Rocket Tracking Pixel -->';
+            const loadtime = '<script>window.onload=function(){var loadTime = window.performance.timing.domComplete-window.performance.timing.navigationStart;';
+            const vars = "var websiteID='" + this.newWebsite.id + "';var apiKey = '" + this.apikey + "';var pixelUrl='http://sovid.dk/scraper.php';";
+            const addscript = 'document.getElementById'+'('+'"siterocket"'+')'+'.src=pixelUrl+"?website="+websiteID+"&apikey="+apiKey+"&loadtime="+loadTime;'+'}'+''+'<'+'/script>';
+            const image = '<img style="opacity: 0;" id="siterocket" />';
+            const endingcomment = '<!-- End Site-Rocket Tracking Pixel -->';
+            const completescript = startcomment + loadtime + vars + addscript + image + endingcomment;
+            return completescript;
+        }
+    },
+    props: {
+        newWebsite: {
+            type: Object,
+            required: true,
         }
     },
 }
