@@ -4,23 +4,7 @@
       <div class="dashboard__header__text">Overview</div>
       <v-btn class="dashboard__header__button" @click="togglePanel()">ADD NEW</v-btn>
     </div>
-    <div v-for="website in websites" :key="website.id" class="dashboard-card">
-      <div class="dashboard-card__header">
-          <div class="websitename">{{ website.websiteName }}</div><div class="websitedomain">({{ website.domain }})</div>
-          <div @click="navigateTo('/website/'+website.id)" class="websitedetails">See details<v-icon class="websitedetails__icon">keyboard_arrow_right</v-icon></div>
-      </div>
-      <div class="dashboard-card__content">
-        <div class="dashboard-uptime">
-          <p class="dashboard-card__content-header">Total uptime</p>
-        </div>
-        <div class="dashboard-loadspeed">
-          <p>Loadspeed Summary</p>
-        </div>
-        <div class="dashboard-seo">
-          <p>Latest SEO issues</p>
-        </div>
-      </div>
-    </div>
+    <dashboard-card v-for="website in websites" :key="website.id" :website="website" />
     <div class="add-new-website" v-if="showPanel">
       <side-panel v-if="step === 1" @closePanel="showPanel = false">
         <add-new-step-one @nextData="nextData"></add-new-step-one>
@@ -35,6 +19,7 @@
         <add-new-step-four :newWebsite="newWebsite" @nextFinal="nextFinal"></add-new-step-four>
       </side-panel>
     </div>
+    <system-toast :message="addedNewSuccess" @reset="addedNewSuccess = ''" v-if="addedNewSuccess != ''" />
   </div>
 </template>
 
@@ -44,6 +29,8 @@ import AddNewStepOne from '../components/AddNewStepOne.vue';
 import AddNewStepTwo from '../components/AddNewStepTwo.vue';
 import AddNewStepThree from '../components/AddNewStepThree.vue';
 import AddNewStepFour from '../components/AddNewStepFour.vue';
+import SystemToast from '../components/SystemToast.vue';
+import DashboardCard from '../components/DashboardCard.vue';
 
 export default {
   name: 'dashboard',
@@ -54,6 +41,7 @@ export default {
       name: '',
       domain: '',
       newWebsite: {},
+      addedNewSuccess: '',
     }
   },
   components: {
@@ -62,6 +50,8 @@ export default {
     AddNewStepTwo,
     AddNewStepThree,
     AddNewStepFour,
+    SystemToast,
+    DashboardCard,
   },
   methods: {
     navigateTo(path) {
@@ -85,6 +75,7 @@ export default {
       this.step++;
     },
     nextFinal() {
+      this.addedNewSuccess = 'Wow! One more site added!'
       this.step++;
       this.newWebsite = {};
     },
