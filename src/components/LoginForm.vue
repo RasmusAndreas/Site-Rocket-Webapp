@@ -52,6 +52,7 @@ export default {
                 email: this.email,
                 password: this.password,
             }).then(() => {
+                this.saveUser();
                 this.$router.push({ name: 'dashboard' })
             }).catch(error => {
                 this.error = 'E-mail or password is incorrect'

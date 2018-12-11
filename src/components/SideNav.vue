@@ -1,6 +1,6 @@
 <template>
     <div class="sidenav">
-      <div class="sidenav__logo">
+      <div class="sidenav__logo" @click="navigateTo({ name: 'dashboard' })">
         <svg class="sidenav__logo-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 152 30.7">
           <g id="Logo" transform="translate(21 -21.2)">
             <text id="Logo-2" data-name="Logo" transform="translate(20 41)" font-size="15" font-family="SourceSansPro-Bold,Source Sans Pro" font-weight="700" letter-spacing=".2em" fill="#fff">
@@ -67,12 +67,16 @@ export default {
     methods: {
         navigateTo(path) {
             this.$router.push(path);
-        }
+        },
+        saveUser() {
+            this.$store.dispatch('saveUser');
+        },
     },
     mounted() {
         this.$store.dispatch('getWebsites')
         .then(websites => {
             this.websites = websites;
+            this.saveUser();
         });
     }
 }
