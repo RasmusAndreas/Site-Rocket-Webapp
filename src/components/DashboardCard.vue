@@ -12,7 +12,7 @@
           <p>Loadspeed Summary</p>
         </div>
         <div class="dashboard-seo">
-          <p>Latest SEO issues</p>
+          <latest-seo :urls="website.urls" />
         </div>
       </div>
     </div>
@@ -20,11 +20,13 @@
 
 <script>
 import TotalUptime from './TotalUptime.vue';
+import LatestSeo from './LatestSeo.vue';
 
 export default {
     name: 'dashboard-card',
     components: {
         TotalUptime,
+        LatestSeo,
     },
     props: {
         website: {
