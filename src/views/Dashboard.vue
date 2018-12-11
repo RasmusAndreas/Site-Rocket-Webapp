@@ -87,12 +87,12 @@ export default {
     nextFinal() {
       this.step++;
       this.newWebsite = {};
-    }
+    },
   },
   computed: {
     websites() {
       return this.$store.state.websites;
-    }
+    },
   }
 }
 </script>
