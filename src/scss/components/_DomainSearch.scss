@@ -11,7 +11,8 @@
         width: 95%;
         max-width: 800px;
         background-color: $white;
-        z-index: 2;
+        z-index: 1003;
+        overflow-y: scroll;
     }
     &__field {
         padding: 20px;
