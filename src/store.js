@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     token: localStorage.getItem('token' || null),
     websites: [],
+    user: null,
   },
   getters: {
     loggedIn(state) {
@@ -25,9 +26,16 @@ export default new Vuex.Store({
     destroyToken(state) {
       state.token = null;
       state.websites = null;
+      state.user = null;
     },
     addWebsite(state, website) {
       state.websites.push(website);
+    },
+    saveUser(state, user) {
+      state.user = user;
+    },
+    updateUser(state, user) {
+      state.user = user;
     }
   },
   actions: {
@@ -47,6 +55,15 @@ export default new Vuex.Store({
         }).catch(error => {
           reject(error)
         })
+      })
+    },
+    saveUser(context) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
+      axios.get('/api/user').then(user => {
+        context.commit('saveUser', user.data);
+      }).catch(error => {
+        // eslint-disable-next-line
+        console.log(error);
       })
     },
     getWebsites(context) {
@@ -70,6 +87,23 @@ export default new Vuex.Store({
           password: credentials.password,
           name: credentials.name,
         }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    updateUser(context, credentials) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
+      return new Promise((resolve, reject) => {
+        axios.patch('/api/user/update', {
+          name: credentials.name,
+          email: credentials.email,
+          password: credentials.password,
+          passwordRepeat: credentials.passwordRepeat,
+          oldPassword: credentials.oldPassword,
+        }).then(response => {
+          context.commit('updateUser', response.data);
           resolve(response)
         }).catch(error => {
           reject(error)
