@@ -1,7 +1,9 @@
 .dashboard {
     margin-top: 64px;
     width: 100%;
+    min-height: 100vh;
     padding: 50px;
+    background-color: #F0F0F7;
     &__header {
         height: 50px;
         margin-bottom: 50px;
@@ -22,6 +24,7 @@
     box-shadow: 1px 1px 5px #ccc;
     margin-bottom: 20px;
     color: $dark-text;
+    background-color: #fff;
     &__header {
         height: 40px;
         border-bottom: 1px solid #E9E9F0;
