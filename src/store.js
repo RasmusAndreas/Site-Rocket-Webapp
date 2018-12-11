@@ -51,7 +51,7 @@ export default new Vuex.Store({
     },
     getWebsites(context) {
       return new Promise((resolve, reject) => {
-        axios.get('/api/websites', { headers: { Authorization: 'Bearer '.concat(this.state.token) } })
+        axios.get('/api/everything', { headers: { Authorization: 'Bearer '.concat(this.state.token) } })
         .then(response => {
           context.commit('getWebsites', response.data);
           resolve(response.data)
