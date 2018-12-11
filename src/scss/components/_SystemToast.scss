@@ -1,0 +1,181 @@
+@keyframes fly {
+    0% {
+        transform: rotate(0);
+        bottom: 40px;
+        left: 35px;
+    }
+    10% {
+        transform: rotate(0);
+        bottom: 40px;
+        left: 35px;
+    }
+    20% {
+        transform: rotate(-45deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    21% {
+        transform: rotate(-47deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    22% {
+        transform: rotate(-43deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    23% {
+        transform: rotate(-47deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    24% {
+        transform: rotate(-43deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    25% {
+        transform: rotate(-47deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    26% {
+        transform: rotate(-43deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    27% {
+        transform: rotate(-47deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    28% {
+        transform: rotate(-43deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    29% {
+        transform: rotate(-47deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    30% {
+        transform: rotate(-43deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    31% {
+        transform: rotate(-47deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    32% {
+        transform: rotate(-43deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    33% {
+        transform: rotate(-47deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    34% {
+        transform: rotate(-43deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    35% {
+        transform: rotate(-47deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    36% {
+        transform: rotate(-43deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    37% {
+        transform: rotate(-47deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    38% {
+        transform: rotate(-43deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    39% {
+        transform: rotate(-47deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    40% {
+        transform: rotate(-43deg);
+        bottom: 40px;
+        left: 40px;
+    }
+    45% {
+        transform: rotate(-45deg);
+        bottom: 35px;
+        left: 40px;
+    }
+    100% {
+        transform: rotate(-45deg);
+        bottom: 2000px;
+        left: 40px;
+    }
+}
+
+.system-toast {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.1s ease-in;
+    &__inner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        background-color: $primary;
+        opacity: .9;
+        padding: 60px;
+        box-shadow: 1px 1px 5px #ccc;
+    }
+    &__rocket-launch {
+        display: block;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background-color: $white;
+        margin: 0 auto 20px auto;
+        position: relative;
+    }
+    &__rocket {
+        width: 80px;
+        height: auto;
+        position: absolute;
+        bottom: 40px;
+        left: 35px;
+        z-index: 5000;
+        animation-name: fly;
+        animation-duration: 4s;
+        animation-timing-function: ease;
+        animation-fill-mode: forwards;
+        .cls-1 {
+            fill: $primary;
+        }
+        .cls-2 {
+            fill: #ce7631;
+        }
+    }
+    &__message {
+        font-size: 24px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+        color: $white;
+    }
+}

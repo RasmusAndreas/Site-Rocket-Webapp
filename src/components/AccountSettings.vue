@@ -22,7 +22,7 @@
                 @click:append="show = !show"
             ></v-text-field>
             <v-text-field
-                v-model="newPassword"
+                v-model="password"
                 :append-icon="show ? 'visibility_off' : 'visibility'"
                 :rules="[passRules.required]"
                 :type="show ? 'text' : 'password'"
@@ -30,7 +30,7 @@
                 @click:append="show = !show"
             ></v-text-field>
             <v-text-field
-                v-model="passwordrepeat"
+                v-model="passwordRepeat"
                 :append-icon="show ? 'visibility_off' : 'visibility'"
                 :rules="[passRules.required]"
                 :type="show ? 'text' : 'password'"
@@ -57,12 +57,12 @@ export default {
                 v => /.+@.+/.test(v) || 'E-mail must be valid'
             ],
             oldPassword: '',
-            newPassword: '',
+            password: '',
             show: false,
             passRules: {
                 required: value => !!value || 'Required.',
             },
-            passwordrepeat: '',
+            passwordRepeat: '',
             error: '',
         }
     },
@@ -74,22 +74,18 @@ export default {
             });
         },
         update() {
-            if (this.newPassword == this.passwordrepeat) {
-                this.$store.dispatch('updateUser', {
-                    name: this.name,
-                    email: this.email,
-                    password: this.newPassword,
-                    passwordrepeat: this.passwordrepeat,
-                    oldPassword: this.oldPassword,
-                }).then(() => {
-                    this.$router.push({ name: 'dashboard' })
-                }).catch(error => {
-                    // eslint-disable-next-line
-                    console.log(error.halloj)
-                })
-            } else {
-                this.error = 'The password needs to be the same';
-            }
+            this.$store.dispatch('updateUser', {
+                name: this.name,
+                email: this.email,
+                password: this.password,
+                passwordRepeat: this.passwordPepeat,
+                oldpassword: this.oldPassword,
+            }).then(() => {
+                this.$emit('accountSaved', 'Awesome! Account updated succesfully');
+            }).catch(error => {
+                // eslint-disable-next-line
+                console.log(error.response.data)
+            })
         },
         navigateTo(path) {
             this.$router.push(path);

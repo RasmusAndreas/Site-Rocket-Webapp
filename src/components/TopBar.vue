@@ -17,9 +17,10 @@
             </div>
         </div>
         <side-panel v-if="showAccount" :overlay="true" @closePanel="showAccount = false">
-            <account-settings />
+            <account-settings @accountSaved="accountSaved" />
         </side-panel>
         <domain-search v-if="showSearch" @closeSearch="showSearch = false" />
+        <system-toast :message="toastMessage" @reset="toastMessage = ''" v-if="toastMessage != ''" />
     </div>
 </template>
 
@@ -27,6 +28,7 @@
 import SidePanel from './SidePanel.vue';
 import AccountSettings from './AccountSettings.vue';
 import DomainSearch from './DomainSearch.vue';
+import SystemToast from './SystemToast.vue';
 
 export default {
     name: 'top-bar',
@@ -34,11 +36,13 @@ export default {
         SidePanel,
         AccountSettings,
         DomainSearch,
+        SystemToast,
     },
     data() {
         return {
             showAccount: false,
             showSearch: false,
+            toastMessage: '',
         }
     },
     methods: {
@@ -47,6 +51,10 @@ export default {
         },
         toggleSearch() {
             this.showSearch = true
+        },
+        accountSaved(message) {
+            this.showAccount = false;
+            this.toastMessage = message;
         }
     }
 }
