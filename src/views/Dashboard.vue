@@ -6,7 +6,7 @@
     </div>
     <div v-for="website in websites" :key="website.id" class="dashboard-card">
       <div class="dashboard-card__header">
-          <div class="websitename">{{ website.websiteName}}</div><div class="websitedomain">({{ website.domain }})</div>
+          <div class="websitename">{{ website.websiteName }}</div><div class="websitedomain">({{ website.domain }})</div>
           <div @click="navigateTo('/website/'+website.id)" class="websitedetails">See details<v-icon class="websitedetails__icon">keyboard_arrow_right</v-icon></div>
       </div>
       <div class="dashboard-card__content">
@@ -29,10 +29,10 @@
         <add-new-step-two :name="name" :domain="domain"  @nextCreated="nextCreated"></add-new-step-two>
       </side-panel>
       <side-panel v-if="step === 3" @closePanel="showPanel = false">
-        <add-new-step-three :newWebsite="newWebsite" @next="next"></add-new-step-three>
+        <add-new-step-three :newWebsite="newWebsite" @nextIntegrate="nextIntegrate"></add-new-step-three>
       </side-panel>
       <side-panel v-if="step === 4" @closePanel="showPanel = false">
-        <add-new-step-four @next="next"></add-new-step-four>
+        <add-new-step-four :newWebsite="newWebsite" @nextFinal="nextFinal"></add-new-step-four>
       </side-panel>
     </div>
   </div>
@@ -81,14 +81,18 @@ export default {
       this.newWebsite = data.newWebsite;
       this.step++;
     },
-    next() {
+    nextIntegrate() {
       this.step++;
-    }
+    },
+    nextFinal() {
+      this.step++;
+      this.newWebsite = {};
+    },
   },
   computed: {
     websites() {
       return this.$store.state.websites;
-    }
+    },
   }
 }
 </script>
