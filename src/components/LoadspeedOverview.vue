@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    name: 'loadspeed-slowest-pages',
+    name: 'loadspeed-overview',
     props: {
         urls: {
             required: true,
@@ -13,9 +13,6 @@ export default {
             type: String,
             required: true,
         }
-    },
-    methods: {
-
     }
 }
 </script>

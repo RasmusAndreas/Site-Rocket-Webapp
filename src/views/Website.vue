@@ -28,10 +28,10 @@
                 Loadspeed
             </v-tab>
             <v-tab-item>
-                <v-card flat class="website-card">
-                    <div class="website-header">Quick insights</div>
-                    <loadspeed-quick-insights :urls="websitedata.urls"/>
-                    <loadspeed-slowest-pages :urls="websitedata.urls"/>
+                <v-card flat class="website-card" v-if="websitedata">
+                    <loadspeed-quick-insights :urls="websitedata.urls" header="Quick insight"/>
+                    <loadspeed-slowest-pages :urls="websitedata.urls" header="Slowest pages"/>
+                    <loadspeed-overview :urls="websitedata.urls" header="Loadspeed overview"/>
                 </v-card>
             </v-tab-item>
 
@@ -53,17 +53,19 @@
 <script>
 import LoadspeedQuickInsights from '../components/LoadspeedQuickInsights.vue';
 import LoadspeedSlowestPages from '../components/LoadspeedSlowestPages.vue';
+import LoadspeedOverview from '../components/LoadspeedOverview.vue';
 
 export default {
     name: 'website',
     components: {
         LoadspeedQuickInsights,
         LoadspeedSlowestPages,
+        LoadspeedOverview,
     },
     data () {
       return {
         active: null,
-        websitedata: {},
+        websitedata: null,
         websites: this.$store.state.websites,
       }
     },
@@ -74,21 +76,27 @@ export default {
     },
     watch: {
         '$route'(to) {
-            this.websitedata = this.websites.filter(website => website.id == to.params.id);
-            this.websitedata = this.websitedata[0];
+            this.$store.dispatch('getWebsite', {
+                websiteid: to.params.id,
+            }).then(response => {
+                this.websitedata = response.data[0];
+            }).catch(error => {
+                this.error = 'E-mail or password is incorrect'
+                // eslint-disable-next-line
+                console.log(error.response.data.message)
+            });
         },
     },
     created() {
-        this.$store.watch(()=>{
-            return this.$store.state.websites
-            },
-            (newValue)=>{
-            //something changed do something
-            this.websites = newValue;
-            }
-        );
-        this.websitedata = this.websites.filter(website => website.id == this.$route.params.id);
-        this.websitedata = this.websitedata[0];
-    },
+        this.$store.dispatch('getWebsite', {
+                websiteid: this.$route.params.id,
+            }).then(response => {
+                this.websitedata = response.data[0];
+            }).catch(error => {
+                this.error = 'E-mail or password is incorrect'
+                // eslint-disable-next-line
+                console.log(error.response.data.message)
+        });
+    }
 }
 </script>

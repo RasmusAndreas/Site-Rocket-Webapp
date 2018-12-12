@@ -36,7 +36,7 @@ export default new Vuex.Store({
     },
     updateUser(state, user) {
       state.user = user;
-    }
+    },
   },
   actions: {
     retrieveToken(context, credentials) {
@@ -146,6 +146,19 @@ export default new Vuex.Store({
           reject(error)
         })
       });
+    },
+    getWebsite(context, id) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
+
+      return new Promise((resolve, reject) => {
+        axios.post('/api/getAllWebsite', {
+          websiteid: id
+        }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
     },
   }
 })
