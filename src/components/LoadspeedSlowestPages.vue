@@ -1,5 +1,14 @@
 <template>
-    <div>{{ header }}</div>
+    <div>
+        <div class="website-header">{{ header }}</div>
+        <div v-for="(loadtime, index) in calcFiveSlowLoadtimes()" :key="index">
+            <div class="loadtime-slowest-pages-text">
+                <div class="loadtime-slowest-pages-url">{{ loadtime.url}} </div>
+                <div class="loadtime-slowest-pages-avg">{{ parseFloat(loadtime.avg).toFixed(2) }}s</div>
+            </div>
+            <v-progress-linear :value="loadtime.percent" color="#E74C3C" height="5" background-color="#EDF0F5"></v-progress-linear>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -31,12 +40,18 @@ export default {
                 temp.forEach(loadtime => {
                     total = total + parseInt(loadtime);
                 });
-                let urlavg = parseFloat((total / amount) / 1000).toFixed(2);
-                all.push({url: url.url, avg: urlavg});
+                let urlavg = (total / amount) / 1000;
+                all.push({url: url.url, avg: urlavg, percent: 0});
+
             });
             let sorted = this.sortByKey(all, 'avg');
-            // eslint-disable-next-line
-            console.log(sorted);
+            var maximum = Math.max.apply(Math, all.map(function(o) { return o.avg; }));
+            let sliced = sorted.slice(0,5)
+            sliced.forEach(url => {
+                let percent = (url.avg / maximum) * 100;
+                url.percent = percent;
+            });
+            return sliced;
         },
         sortByKey(array, key) {
             return array.sort(function(a, b) {
