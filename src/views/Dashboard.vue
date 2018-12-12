@@ -4,7 +4,20 @@
       <div class="dashboard__header__text">Overview</div>
       <v-btn class="dashboard__header__button" @click="togglePanel()">ADD NEW</v-btn>
     </div>
-    <dashboard-card v-for="website in websites" :key="website.id" :website="website" />
+    <div v-if="!loading">
+      <dashboard-card v-for="website in websites" :key="website.id" :website="website" />
+    </div>
+    <div class="loadbox" v-else>
+      <v-progress-circular
+      :size="120"
+      :width="7"
+      color="#a5a6ac"
+      indeterminate
+      class="loadbox__spinner"
+      >
+        <div class="loadbox-label">Comming right up...</div>
+      </v-progress-circular>
+    </div>
     <div class="add-new-website" v-if="showPanel">
       <side-panel v-if="step === 1" @closePanel="showPanel = false">
         <add-new-step-one @nextData="nextData"></add-new-step-one>
@@ -42,6 +55,7 @@ export default {
       domain: '',
       newWebsite: {},
       addedNewSuccess: '',
+      loaded: false,
     }
   },
   components: {
@@ -84,6 +98,9 @@ export default {
     websites() {
       return this.$store.state.websites;
     },
+    loading() {
+      return this.$store.state.loading;
+    }
   }
 }
 </script>

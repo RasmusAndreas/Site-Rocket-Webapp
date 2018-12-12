@@ -1,7 +1,11 @@
 <template>
-    <div class="latest-seo">
+    <div class="latest-seo" v-if="urls">
         <div class="latest-seo__header">Latest SEO issues</div>
         <latest-seo-item v-for="url in urls.slice(0, 5)" :key="url.id" :url="url"/>
+    </div>
+    <div class="latest-seo" v-else>
+        <div class="latest-seo__header">Latest SEO issues</div>
+        <p>No data yet</p>
     </div>
 </template>
 

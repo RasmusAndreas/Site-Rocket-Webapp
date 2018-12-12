@@ -34,13 +34,24 @@
           </div>
         </div>
       </div>
-      <div class="sidenav__sublist">
+      <div class="sidenav__sublist" v-if="!loading">
         <div class="sidenav__subitem"
           v-for="website in websites"
           :key="website.id"
           @click="navigateTo('/website/'.concat(website.id))"
           :class="website.id == $route.params.id ? 'active nav-item': 'nav-item'"
         >{{ website.websiteName }}</div>
+      </div>
+      <div class="loadbox" v-else>
+        <v-progress-circular
+          :size="40"
+          :width="4"
+          color="#fff"
+          indeterminate
+          class="loadbox__spinner"
+          >
+          <div class="loadbox-label"></div>
+        </v-progress-circular>
       </div>
     </div>
 </template>
@@ -56,29 +67,24 @@ export default {
           { title: 'Domains', icon: 'public', path: '/' }
         ],
         right: null,
-        websites: [],
       }
     },
     computed: {
         loggedIn() {
-            return this.$store.getters.loggedIn
+            return this.$store.getters.loggedIn;
+        },
+        websites() {
+          return this.$store.state.websites;
+        },
+        loading() {
+          return this.$store.state.loading;
         }
     },
     methods: {
         navigateTo(path) {
             this.$router.push(path);
         },
-        saveUser() {
-            this.$store.dispatch('saveUser');
-        },
     },
-    mounted() {
-        this.$store.dispatch('getWebsites')
-        .then(websites => {
-            this.websites = websites;
-            this.saveUser();
-        });
-    }
 }
 </script>
 

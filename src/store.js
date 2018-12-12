@@ -10,6 +10,7 @@ export default new Vuex.Store({
     token: localStorage.getItem('token' || null),
     websites: [],
     user: null,
+    loading: true,
   },
   getters: {
     loggedIn(state) {
@@ -22,6 +23,7 @@ export default new Vuex.Store({
     },
     getWebsites(state, websites) {
       state.websites = websites;
+      state.loading = false;
     },
     destroyToken(state) {
       state.token = null;
@@ -36,7 +38,7 @@ export default new Vuex.Store({
     },
     updateUser(state, user) {
       state.user = user;
-    }
+    },
   },
   actions: {
     retrieveToken(context, credentials) {

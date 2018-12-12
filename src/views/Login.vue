@@ -1,5 +1,5 @@
 <template>
-    <side-panel :overlay="false">
+    <side-panel v-if="!$store.getters.loggedIn" :overlay="false">
         <login-form />
     </side-panel>
 </template>
