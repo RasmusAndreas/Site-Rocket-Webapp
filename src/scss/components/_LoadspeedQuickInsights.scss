@@ -1,0 +1,26 @@
+.loadspeed-insight-container {
+    
+}
+.loadspeed-insight-item {
+    margin-bottom: 20px;
+}
+.loadspeed-icon {
+    float: left;
+    height: 38px;
+    margin-right: 10px;
+}
+.loadspeed-insight-text {
+    font-weight: 700;
+}
+.text-fast {
+    color: $happy;
+}
+.text-avg {
+    color: $dark-text;
+}
+.text-slow {
+    color: $danger;
+}
+.subtext-loadspeed-insight {
+    color: $faded-text;
+}

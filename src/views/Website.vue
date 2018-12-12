@@ -28,8 +28,10 @@
                 Loadspeed
             </v-tab>
             <v-tab-item>
-                <v-card flat>
+                <v-card flat class="website-card">
+                    <div class="website-header">Quick insights</div>
                     <loadspeed-quick-insights :urls="websitedata.urls"/>
+                    <loadspeed-slowest-pages :urls="websitedata.urls"/>
                 </v-card>
             </v-tab-item>
 
@@ -49,18 +51,20 @@
 </template>
 
 <script>
-import LoadspeedQuickInsights from '../components/LoadspeedQuickInsights.vue'
+import LoadspeedQuickInsights from '../components/LoadspeedQuickInsights.vue';
+import LoadspeedSlowestPages from '../components/LoadspeedSlowestPages.vue';
 
 export default {
     name: 'website',
     components: {
         LoadspeedQuickInsights,
+        LoadspeedSlowestPages,
     },
     data () {
       return {
         active: null,
         websitedata: {},
-        websites: {},
+        websites: this.$store.state.websites,
       }
     },
     methods: {
@@ -69,10 +73,6 @@ export default {
         },
     },
     watch: {
-        websites() {
-            this.websitedata = this.websites.filter(website => website.id == this.$route.params.id);
-            this.websitedata = this.websitedata[0];
-        },
         '$route'(to) {
             this.websitedata = this.websites.filter(website => website.id == to.params.id);
             this.websitedata = this.websitedata[0];
@@ -86,7 +86,9 @@ export default {
             //something changed do something
             this.websites = newValue;
             }
-        )
+        );
+        this.websitedata = this.websites.filter(website => website.id == this.$route.params.id);
+        this.websitedata = this.websitedata[0];
     },
 }
 </script>

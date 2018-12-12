@@ -10,6 +10,7 @@
         </div>
         <div class="dashboard-loadspeed">
           <p>Loadspeed Summary</p>
+          <loadspeed-quick-insights :urls="website.urls"/>
         </div>
         <div class="dashboard-seo">
           <latest-seo :urls="website.urls" />
@@ -21,12 +22,14 @@
 <script>
 import TotalUptime from './TotalUptime.vue';
 import LatestSeo from './LatestSeo.vue';
+import LoadspeedQuickInsights from './LoadspeedQuickInsights.vue';
 
 export default {
     name: 'dashboard-card',
     components: {
         TotalUptime,
         LatestSeo,
+        LoadspeedQuickInsights,
     },
     props: {
         website: {

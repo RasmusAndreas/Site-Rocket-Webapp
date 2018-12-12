@@ -1,17 +1,19 @@
 <template>
-    <div v-if="urls.length > 0">
-        <div>Quick insights</div>
-        <div>
-            <div>{{ fastest }}s</div>
-            <div>Fastest loadspeed</div>
+    <div v-if="urls.length > 0" class="loadspeed-insight-container">
+        <div class="loadspeed-insight-item">
+            <img class="loadspeed-icon" src="../assets/icon-fast.png">
+            <div class="loadspeed-insight-text text-fast">{{ fastest }}s</div>
+            <div class="subtext-loadspeed-insight">Fastest loadspeed</div>
         </div>
-        <div>
-            <div>{{ averageLoadtime }}s</div>
-            <div>Average loadspeed</div>
+        <div class="loadspeed-insight-item">
+            <img class="loadspeed-icon" src="../assets/icon-avg.png">
+            <div class="loadspeed-insight-text text-avg">{{ averageLoadtime }}s</div>
+            <div class="subtext-loadspeed-insight">Average loadspeed</div>
         </div>
-        <div>
-            <div>{{ slowest }}s</div>
-            <div>Slowest loadspeed</div>
+        <div class="loadspeed-insight-item">
+            <img class="loadspeed-icon" src="../assets/icon-slow.png">
+            <div class="loadspeed-insight-text text-slow">{{ slowest }}s</div>
+            <div class="subtext-loadspeed-insight">Slowest loadspeed</div>
         </div>
     </div>
 </template>
@@ -29,10 +31,8 @@ export default {
             required: true,
         },
     },
-    watch: {
-        urls() {
-            this.allLoadtimesCalc();
-        },
+    created() {
+        this.allLoadtimesCalc();
     },
     methods: {
         allLoadtimesCalc() {
@@ -45,7 +45,7 @@ export default {
                 });
             });
             // eslint-disable-next-line
-            console.log(all);
+            //console.log(all);
             this.allLoadtimes = all;
         }
     },
@@ -57,9 +57,9 @@ export default {
                 total = total + parseInt(loadtime);
             });
             // eslint-disable-next-line
-            console.log(total);
+            //console.log(total);
             // eslint-disable-next-line
-            console.log(amountOfLoadtimes);
+            //console.log(amountOfLoadtimes);
             let average = (total / amountOfLoadtimes) / 1000;
             return parseFloat(average).toFixed(2);
         },
