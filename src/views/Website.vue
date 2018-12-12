@@ -1,5 +1,8 @@
 <template>
     <div class="website">
+        <div class="website__header">
+            <div class="website__header__text">{{ websitedata.websiteName }}</div><div class="website__header__fadedtext">({{ websitedata.domain }})</div>
+        </div>
         <v-tabs
         v-model="active"
         slider-color="grey">
@@ -26,7 +29,7 @@
             </v-tab>
             <v-tab-item>
                 <v-card flat>
-                    <v-card-text>Loadspeed</v-card-text>
+                    <loadspeed-quick-insights :urls="websitedata.urls"/>
                 </v-card>
             </v-tab-item>
 
@@ -46,18 +49,44 @@
 </template>
 
 <script>
+import LoadspeedQuickInsights from '../components/LoadspeedQuickInsights.vue'
+
 export default {
     name: 'website',
+    components: {
+        LoadspeedQuickInsights,
+    },
     data () {
       return {
         active: null,
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+        websitedata: {},
+        websites: {},
       }
     },
     methods: {
         navigateTo(path) {
             this.$router.push(path);
         },
-    }
+    },
+    watch: {
+        websites() {
+            this.websitedata = this.websites.filter(website => website.id == this.$route.params.id);
+            this.websitedata = this.websitedata[0];
+        },
+        '$route'(to) {
+            this.websitedata = this.websites.filter(website => website.id == to.params.id);
+            this.websitedata = this.websitedata[0];
+        },
+    },
+    created() {
+        this.$store.watch(()=>{
+            return this.$store.state.websites
+            },
+            (newValue)=>{
+            //something changed do something
+            this.websites = newValue;
+            }
+        )
+    },
 }
 </script>
