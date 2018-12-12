@@ -1,8 +1,8 @@
 <template>
     <div class="dashboard-card">
       <div class="dashboard-card__header">
-          <div class="websitename">{{ website.websiteName }}</div><div class="websitedomain">(Domæne)</div>
-          <div class="websitedetails" @click="seeDetails(website)">See details<v-icon class="websitedetails__icon">keyboard_arrow_right</v-icon></div>
+          <div class="websitename">{{ website.websiteName }}</div><div class="websitedomain">({{ website.domain }})</div>
+          <div class="websitedetails" @click="navigateTo('/website/' + website.id)">See details<v-icon class="websitedetails__icon">keyboard_arrow_right</v-icon></div>
       </div>
       <div class="dashboard-card__content">
         <div class="dashboard-uptime">
@@ -38,8 +38,8 @@ export default {
         },
     },
     methods: {
-        seeDetails(website) {
-            this.$router.push({ path: '/website/' + website.id, query: website })
+        navigateTo(path) {
+            this.$router.push(path);
         }
     },
     mounted() {

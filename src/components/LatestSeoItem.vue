@@ -36,7 +36,7 @@ export default {
     },
     mounted() {
         // eslint-disable-next-line
-        console.log(this.url);
+        // console.log(this.url);
     }
 }
 </script>

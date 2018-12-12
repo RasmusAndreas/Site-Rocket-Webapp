@@ -52,8 +52,11 @@ export default {
                 email: this.email,
                 password: this.password,
             }).then(() => {
-                this.saveUser();
-                this.navigateTo('/')
+                this.$store.dispatch('getWebsites')
+                .then(() => {
+                    this.$store.dispatch('saveUser');
+                    this.navigateTo('/');
+                });
             }).catch(error => {
                 this.error = 'E-mail or password is incorrect'
                 // eslint-disable-next-line

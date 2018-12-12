@@ -7,7 +7,7 @@
         <router-view/>
       </div>
     </div>
-    <div v-if="!$store.getters.loggedIn">
+    <div v-else>
       <header-img/>
       <router-view/>
     </div>
@@ -27,5 +27,13 @@ export default {
     TopBar,
     HeaderImg,
   },
+  mounted() {
+    if(this.$store.getters.loggedIn) {
+      this.$store.dispatch('getWebsites')
+      .then(() => {
+          this.$store.dispatch('saveUser');
+      });
+    }
+  }
 }
 </script>

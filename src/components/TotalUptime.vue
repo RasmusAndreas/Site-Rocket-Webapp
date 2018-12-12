@@ -44,7 +44,11 @@ export default {
             return diff / 300000;
         },
         downPings() {
-            return this.uptimes.length;
+            if(this.uptimes) {
+                return this.uptimes.length;
+            } else {
+                return 0;
+            }
         },
         upTime() {
             if(this.downPings > 0) {
