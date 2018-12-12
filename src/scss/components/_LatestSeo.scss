@@ -1,0 +1,23 @@
+.latest-seo {
+    &__item {
+        font-size: 13px;
+        border-bottom: 1px solid #F1F1F3;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+    }
+    &__header {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    &__url {
+        display: block;
+        float: left;
+    }
+    &__issues {
+        display: block;
+        float: right;
+        font-weight: bold;
+        color: $faded-text;
+    }
+}
