@@ -1,5 +1,22 @@
 .website {
     padding: 50px;
+    &__header {
+        height: 50px;
+        margin-bottom: 50px;
+        &__text {
+            float: left;
+            font-size: 28px;
+            color: $dark-text;
+            line-height: 50px;
+        }
+        &__fadedtext {
+            float: left;
+            font-size: 28px;
+            color: $faded-text;
+            line-height: 50px;
+            margin-left: 5px;
+        }
+    }
 }
 .settingsbutton {
     float: right;
