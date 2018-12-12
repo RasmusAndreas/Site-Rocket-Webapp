@@ -11,8 +11,8 @@
                     Uptime
                 </v-tab>
                 <v-tab-item>
-                    <v-card flat>
-                        <v-card-text>Uptime</v-card-text>
+                    <v-card flat class="website-card">
+                        <website-uptime />
                     </v-card>
                 </v-tab-item>
 
@@ -30,9 +30,9 @@
                 </v-tab>
                 <v-tab-item>
                     <v-card flat class="website-card" v-if="websitedata">
-                        <loadspeed-quick-insights :urls="websitedata.urls" header="Quick insight"/>
-                        <loadspeed-slowest-pages :urls="websitedata.urls" header="Slowest pages"/>
-                        <loadspeed-overview :urls="websitedata.urls" header="Loadspeed overview"/>
+                        <loadspeed-quick-insights :urls="websitedata.urls" header="Quick insight" />
+                        <loadspeed-slowest-pages :urls="websitedata.urls" header="Slowest pages" />
+                        <loadspeed-overview :urls="websitedata.urls" header="Loadspeed overview" />
                     </v-card>
                 </v-tab-item>
 
@@ -56,6 +56,7 @@
 import LoadspeedQuickInsights from '../components/LoadspeedQuickInsights.vue';
 import LoadspeedSlowestPages from '../components/LoadspeedSlowestPages.vue';
 import LoadspeedOverview from '../components/LoadspeedOverview.vue';
+import WebsiteUptime from '../components/WebsiteUptime.vue';
 
 export default {
     name: 'website',
@@ -63,6 +64,7 @@ export default {
         LoadspeedQuickInsights,
         LoadspeedSlowestPages,
         LoadspeedOverview,
+        WebsiteUptime,
     },
     data () {
       return {
