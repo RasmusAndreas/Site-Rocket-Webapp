@@ -67,7 +67,7 @@ export default {
                     password: this.password,
                     name: this.name,
                 }).then(() => {
-                    this.$router.push({ name: 'dashboard' })
+                    this.$router.push({ name: 'login' })
                 }).catch(error => {
                     this.error = 'Something went wrong'
                     // eslint-disable-next-line

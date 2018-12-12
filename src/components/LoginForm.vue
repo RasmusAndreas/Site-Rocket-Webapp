@@ -53,7 +53,7 @@ export default {
                 password: this.password,
             }).then(() => {
                 this.saveUser();
-                this.$router.push({ name: 'dashboard' })
+                this.navigateTo('/')
             }).catch(error => {
                 this.error = 'E-mail or password is incorrect'
                 // eslint-disable-next-line
