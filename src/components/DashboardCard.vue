@@ -9,8 +9,7 @@
           <total-uptime :uptimes="website.uptimes" :startDate="website.created_at" />
         </div>
         <div class="dashboard-loadspeed">
-          <p>Loadspeed Summary</p>
-          <loadspeed-quick-insights :urls="website.urls"/>
+          <loadspeed-quick-insights :urls="website.urls" header="Loadspeed Summary" />
         </div>
         <div class="dashboard-seo">
           <latest-seo :urls="website.urls" />
