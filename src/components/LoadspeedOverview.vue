@@ -25,7 +25,7 @@ export default {
         header: {
             type: String,
             required: true,
-        }
+        },
     },
     methods: {
         calcAvg(array) {
@@ -42,6 +42,9 @@ export default {
             let temp = [];
             let tempToday = [];
             let tempYesterday = [];
+            let urlAvg = 0;
+            let todayAvg = 0;
+            let yesterdayAvg = 0;
 
             this.urls.forEach(url => {
                 temp = [];
@@ -58,9 +61,9 @@ export default {
                     }
                     temp.push(parseInt(loadtime.loadtime));
                 });
-                let urlAvg = this.calcAvg(temp);
-                let todayAvg = this.calcAvg(tempToday);
-                let yesterdayAvg = this.calcAvg(tempYesterday);
+                urlAvg = this.calcAvg(temp);
+                todayAvg = this.calcAvg(tempToday);
+                yesterdayAvg = this.calcAvg(tempYesterday);
                 all.push({url: url.url, avg: urlAvg, today: todayAvg, yesterday: yesterdayAvg});
             });
 

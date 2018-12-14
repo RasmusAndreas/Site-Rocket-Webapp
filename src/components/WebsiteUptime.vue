@@ -19,7 +19,7 @@
                     <div class="total-uptime__circle"></div>
                     <div class="total-uptime__label">Downtime</div>
                 </div>
-                <div class="total-uptime__value">{{  }}%</div>
+                <div class="total-uptime__value">%</div>
             </div>
         </div>
     </div>
