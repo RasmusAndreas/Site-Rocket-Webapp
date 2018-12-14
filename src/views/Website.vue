@@ -13,9 +13,15 @@
                 </v-tab>
                 <v-tab-item>
                     <v-card flat class="website-card" v-if="websitedata">
-                        <total-uptime :uptime="parseFloat(this.upTime()).toFixed(2)" :downtime="parseFloat(100 - this.upTime()).toFixed(2)" />
-                        <uptime-last-week :uptimes="websitedata.uptimes" header="Uptime - last 7 days"/>
-                        <uptime-longest-downtime :uptimes="websitedata.uptimes" header="Longest downtime"/>
+                        <div class="website-card__total-uptime">
+                            <total-uptime :uptime="parseFloat(this.upTime()).toFixed(2)" :downtime="parseFloat(100 - this.upTime()).toFixed(2)" />
+                        </div>
+                        <div class="website-card__week-uptime">
+                            <uptime-last-week :uptimes="websitedata.uptimes" header="Uptime - last 7 days"/>
+                        </div>
+                        <div class="website-card__longest-uptime">
+                            <uptime-longest-downtime :uptimes="websitedata.uptimes" header="Longest downtime"/>
+                        </div>
                         <uptime-overview :uptimes="websitedata.uptimes" header="Downtime overview"/>
                     </v-card>
                 </v-tab-item>

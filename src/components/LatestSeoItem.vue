@@ -1,7 +1,7 @@
 <template>
     <div class="latest-seo__item">
         <div class="latest-seo__url">{{ url.url }}</div>
-        <div class="latest-seo__issues">{{ issues }}</div>
+        <div class="latest-seo__issues">{{ issues(url) }}</div>
     </div>
 </template>
 
@@ -13,18 +13,23 @@ export default {
             required: true,
         }
     },
-    computed: {
-        issues() {
+    data() {
+        return {
+            urlData: this.url
+        }
+    },
+    methods: {
+        issues(url) {
             let issues = 0;
-            if(this.url.altText > 0) {
+            if(url.altText > 0) {
                 issues++;
-            } else if(this.url.h1 == 0 || this.url.h1 > 1) {
+            } else if(url.h1 =! 1) {
                 issues++;
-            } else if(this.url.metaDescription < 120 || this.url.metaDescription > 180) {
+            } else if(url.metaDescription < 120 || url.metaDescription > 180) {
                 issues++;
-            } else if(this.url.title < 50 || this.url.title > 70) {
+            } else if(url.title < 50 || url.title > 70) {
                 issues++;
-            } else if(this.url.wordCount < 300) {
+            } else if(url.wordCount < 300) {
                 issues++;
             }
             if(issues == 1) {
