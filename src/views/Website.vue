@@ -45,7 +45,7 @@
                 </v-tab>
                 <v-tab-item>
                     <v-card flat>
-                        <v-card-text>Report</v-card-text>
+                        <report :website="websitedata"/>
                     </v-card>
                 </v-tab-item>
                 <div class="settingsbutton" @click="showSettings = true">
@@ -56,8 +56,10 @@
                 <website-settings-form :website="websitedata"/>
             </side-panel>
             <side-panel v-if="showShareReport" @closePanel="showShareReport = false">
-                SHARE REPORT
+                <share-report :reportLink="websitedata.reportLink" @copyToast="copyToast()" @mailSent="mailSent()"/>
             </side-panel>
+            <system-toast :message="shared" @reset="shared = ''" v-if="shared != ''" />
+            <system-toast :message="mailsent" @reset="mailsent = ''" v-if="mailsent != ''" />
         </div>
     </div>
 </template>
@@ -73,6 +75,9 @@ import UptimeLongestDowntime from '../components/UptimeLongestDowntime.vue';
 import SeoTable from '../components/SeoTable.vue';
 import SidePanel from '../components/SidePanel.vue';
 import WebsiteSettingsForm from '../components/WebsiteSettingsForm.vue';
+import ShareReport from '../components/ShareReport.vue';
+import SystemToast from '../components/SystemToast.vue';
+import Report from '../views/Report.vue';
 
 export default {
     name: 'website',
@@ -87,6 +92,9 @@ export default {
         SeoTable,
         SidePanel,
         WebsiteSettingsForm,
+        ShareReport,
+        SystemToast,
+        Report,
     },
     data () {
       return {
@@ -96,6 +104,8 @@ export default {
         showSettings: false,
         showReport: false,
         showShareReport: false,
+        shared: '',
+        mailsent: '',
       }
     },
     methods: {
@@ -148,6 +158,14 @@ export default {
             } else {
                 return 100
             }
+        },
+        copyToast() {
+            this.showShareReport = false;
+            this.shared = 'AWESOME! LINK COPIED TO YOUR CLIPBOARD!';
+        },
+        mailSent() {
+            this.showShareReport = false;
+            this.mailsent = 'AWESOME! A MAIL HAS BEEN SENT!';
         },
     },
     watch: {

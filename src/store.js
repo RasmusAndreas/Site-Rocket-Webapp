@@ -162,5 +162,30 @@ export default new Vuex.Store({
         })
       })
     },
+    sendMail(context, id) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
+
+      return new Promise((resolve, reject) => {
+        axios.post("/api/websites/"+id.id+"/sendmail", {
+          mail: id.email,
+          reportLink: id.reportLink,
+        }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    getWebsiteReport(context, id) {
+        return new Promise((resolve, reject) => {
+        axios.post('/api/report', {
+          reportLink: id.reportKey,
+        }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   }
 })

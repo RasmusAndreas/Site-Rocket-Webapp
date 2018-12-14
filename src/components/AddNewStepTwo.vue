@@ -83,7 +83,7 @@ export default {
             if (this.checkloadtime) {
                 this.settings = this.settings + 'loadtime:1;';
             } else {
-                this.settings = this.settings + 'loadtime:0;';
+                this.settings = this.settings + 'loadtime:0';
                 this.maxloadspeed = 0;
             }
             // max loadspeed
@@ -94,7 +94,7 @@ export default {
                 websiteName: this.name,
                 domain: this.domain,
                 featureSettings: this.settings,
-                reportLink: 'NEEDS TO BE DONE',
+                reportLink: this.randomString(8),
             }).then(response => {
                 this.$emit('nextCreated', {newWebsite: response.data});
             }).catch(error => {
@@ -102,7 +102,19 @@ export default {
                 // eslint-disable-next-line
                 console.log(error.response.data.message)
             })
-        }
+        },
+        randomString(amount) {
+            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+            var string_length = amount;
+            var randomstring = '';
+            var date = new Date();
+            var timestamp = date.getTime();
+            for (var i=0; i<string_length; i++) {
+                var rnum = Math.floor(Math.random() * chars.length);
+                randomstring += chars.substring(rnum,rnum+1);
+            }
+            return randomstring + timestamp;
+        },
     },
     props: {
         name: {

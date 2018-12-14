@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import Vuetify from 'vuetify';
 import VueSlideBar from 'vue-slide-bar';
+import VueClipboard from 'vue-clipboard2'
 
 Vue.component('vue-slide-bar', VueSlideBar);
 
@@ -11,6 +12,7 @@ import 'vuetify/dist/vuetify.min.css';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 
 Vue.use(Vuetify);
+Vue.use(VueClipboard);
 
 Vue.config.productionTip = false;
 
