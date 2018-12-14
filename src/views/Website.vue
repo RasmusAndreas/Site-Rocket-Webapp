@@ -13,7 +13,7 @@
                 </v-tab>
                 <v-tab-item>
                     <v-card flat class="website-card" v-if="websitedata">
-                        <total-uptime :uptimes="websitedata.uptimes" :startDate="websitedata.created_at" />
+                        <total-uptime :uptime="parseFloat(this.upTime()).toFixed(2)" :downtime="parseFloat(100 - this.upTime()).toFixed(2)" />
                         <uptime-last-week :uptimes="websitedata.uptimes" header="Uptime - last 7 days"/>
                         <uptime-longest-downtime :uptimes="websitedata.uptimes" header="Longest downtime"/>
                         <uptime-overview :uptimes="websitedata.uptimes" header="Downtime overview"/>
@@ -34,7 +34,7 @@
                 </v-tab>
                 <v-tab-item>
                     <v-card flat class="website-card" v-if="websitedata">
-                        <loadspeed-quick-insights :urls="websitedata.urls" header="Quick insight" />
+                        <loadspeed-quick-insights :urls="allLoadtimesCalc()" header="Quick insight" />
                         <loadspeed-slowest-pages :urls="websitedata.urls" header="Slowest pages" />
                         <loadspeed-overview :urls="websitedata.urls" header="Loadspeed overview" />
                     </v-card>
@@ -101,6 +101,53 @@ export default {
     methods: {
         navigateTo(path) {
             this.$router.push(path);
+        },
+        allLoadtimesCalc() {
+            var all = [];
+            let urls = this.websitedata.urls;
+            urls.forEach(url => {
+                url.loadtimes.forEach(loadtime => {
+                    all.push(parseInt(loadtime.loadtime));
+                });
+            });
+            this.allLoadtimes = all;
+
+            let amountOfLoadtimes = this.allLoadtimes.length;
+            let total = 0;
+            this.allLoadtimes.forEach(loadtime => {
+                total = total + parseInt(loadtime);
+            });
+
+            let average = parseFloat((total / amountOfLoadtimes) / 1000).toFixed(2);
+
+            let slowest = parseFloat((Math.max.apply(null, this.allLoadtimes)) / 1000).toFixed(2);
+            
+            let fastest = parseFloat((Math.min.apply(null, this.allLoadtimes)) / 1000).toFixed(2);
+
+            let insightstats = {fast: fastest, avg: average, slow: slowest};
+
+            return insightstats;
+        },
+        totalPings() {
+            const startDate = new Date(this.websitedata.created_at);
+            const dateNow = new Date();
+            const diff = dateNow - startDate;
+            return diff / 300000;
+        },
+        downPings() {
+            if(this.websitedata.uptimes) {
+                return this.websitedata.uptimes.length;
+            } else {
+                return 0;
+            }
+        },
+        upTime() {
+            if(this.downPings() > 0) {
+                const number = 100 - (this.downPings() / this.totalPings() * 100);
+                return number
+            } else {
+                return 100
+            }
         },
     },
     watch: {
