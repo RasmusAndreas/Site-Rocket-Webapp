@@ -38,7 +38,7 @@
                     <div v-if="props.item.metaDescription < 120 || props.item.metaDescription > 180">
                         problem metaDescription
                     </div>
-                    <div v-if="props.item.h1 > 1">
+                    <div v-if="props.item.h1 != 1">
                         problem h1
                     </div>
                     <div v-if="props.item.altText > 0">

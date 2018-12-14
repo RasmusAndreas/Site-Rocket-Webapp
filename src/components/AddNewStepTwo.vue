@@ -88,7 +88,7 @@ export default {
             }
             // max loadspeed
             if (this.maxloadspeed !== 0) {
-                this.settings = this.settings + 'maxload:' + (this.maxloadspeed * 1000) + ';';
+                this.settings = this.settings + 'maxload:' + (this.maxloadspeed * 1000);
             }
             this.$store.dispatch('addWebsite', {
                 websiteName: this.name,
