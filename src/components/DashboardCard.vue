@@ -1,8 +1,11 @@
 <template>
     <div class="dashboard-card">
       <div class="dashboard-card__header" @click="navigateTo('/website/' + website.id)">
-          <div class="websitename">{{ website.websiteName }}</div><div class="websitedomain">({{ website.domain }})</div>
-          <div class="websitedetails">See details<v-icon class="websitedetails__icon">keyboard_arrow_right</v-icon></div>
+        <div style="overflow: hidden" class="truncate">
+            <div class="websitename">{{ website.websiteName }}</div>
+            <div class="websitedomain">({{ website.domain }})</div>
+            <div class="websitedetails">See details<v-icon class="websitedetails__icon">keyboard_arrow_right</v-icon></div>
+        </div>
       </div>
       <div class="dashboard-card__content">
         <div class="dashboard-uptime">

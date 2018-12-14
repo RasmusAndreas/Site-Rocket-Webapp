@@ -5,13 +5,14 @@
     padding-bottom: 20px;
     box-shadow: 1px 1px 5px #ccc;
     margin-bottom: 20px;
-    color: $dark-text;
+    color: $text;
     background-color: #fff;
     &__header {
         height: 40px;
         border-bottom: 1px solid #E9E9F0;
         line-height: 40px;
         font-size: 16px;
+        padding: 0 20px;
     }
     &__content {
         padding: 15px 0 0 0;
@@ -21,15 +22,16 @@
     }
 }
 .websitename {
-    float: left;
-    margin-left: 25px;
+    display: inline;
+    font-weight: bold;
 }
 .websitedomain {
-    float: left;
+    display: inline;
     margin-left: 5px;
     color: $faded-text;
 }
 .websitedetails {
+    display: none;
     float: right;
     color: $faded-text;
     position: relative;
@@ -42,20 +44,66 @@
         right: -25px;
     }
 }
+
 .dashboard-uptime {
-    width: 30%;
-    float: left;
-    border-right: 1px solid #ccc;
-    padding: 0 20px;
+    width: 100%;
+    padding: 5px 20px 30px 20px;
+    border-bottom: 1px solid #ebebeb;
+    min-height: 1px;
+    overflow: hidden;
 }
 .dashboard-loadspeed {
-    width: 30%;
-    float: left;
-    border-right: 1px solid #ccc;
-    padding: 0 20px;
+    width: 100%;
+    padding: 25px 20px 15px 20px;
+    border-bottom: 1px solid #ebebeb;
 }
 .dashboard-seo {
-    width: 40%;
-    float: left;
-    padding: 0 20px;
+    width: 100%;
+    padding: 25px 20px 20px 20px;
+}
+
+@include bp(tablet) {
+    .dashboard-card__header {
+        padding: 0 0 0 20px;
+    }
+    .websitedetails {
+        display: inline;
+    }
+    .dashboard-uptime {
+        width: calc(50% - 1px);
+        float: left;
+        border-bottom: 0;
+        border-right: 1px solid #ebebeb;
+    }
+    .dashboard-loadspeed {
+        width: 50%;
+        border-bottom: 0;
+        padding: 0 20px;
+        float: left;
+    }
+    .dashboard-seo {
+        min-height: 1px;
+        overflow: hidden;
+        border-top: 1px solid #ebebeb;
+    }
+}
+
+@include bp(tv) {
+    .dashboard-uptime {
+        width: 30%;
+        float: left;
+        border-right: 1px solid #ccc;
+        padding: 0 20px;
+    }
+    .dashboard-loadspeed {
+        width: 30%;
+        float: left;
+        border-right: 1px solid #ccc;
+        padding: 0 20px;
+    }
+    .dashboard-seo {
+        width: 40%;
+        float: left;
+        padding: 0 20px;
+    }
 }

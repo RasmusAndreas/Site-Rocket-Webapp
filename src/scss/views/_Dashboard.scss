@@ -1,11 +1,11 @@
 .dashboard {
     width: 100%;
     min-height: 100vh;
-    padding: 50px;
+    padding: 30px 20px;
     background-color: #F0F0F7;
     &__header {
         height: 50px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
         &__button {
             float: right;
         }
@@ -14,6 +14,25 @@
             font-size: 28px;
             color: $dark-text;
             line-height: 50px;
+        }
+    }
+}
+
+@include bp(desktop) {
+    .dashboard {
+        padding: 50px;
+        &__header {
+            height: 50px;
+            margin-bottom: 50px;
+            &__button {
+                float: right;
+            }
+            &__text {
+                float: left;
+                font-size: 28px;
+                color: $dark-text;
+                line-height: 50px;
+            }
         }
     }
 }

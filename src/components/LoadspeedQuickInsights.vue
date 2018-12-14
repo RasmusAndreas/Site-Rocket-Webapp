@@ -1,6 +1,6 @@
 <template>
     <div class="loadspeed-insight-container">
-        <div class="website-header">{{ header }}</div>
+        <div class="loadspeed-insight-header">{{ header }}</div>
         <div>
             <div class="loadspeed-insight-item">
                 <img class="loadspeed-icon" src="../assets/icon-fast.png">

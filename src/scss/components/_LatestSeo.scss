@@ -4,7 +4,7 @@
         border-bottom: 1px solid #F1F1F3;
         height: 40px;
         line-height: 40px;
-        padding: 0 20px;
+        padding: 0;
     }
     &__header {
         font-size: 16px;
@@ -13,6 +13,7 @@
     &__url {
         display: block;
         float: left;
+        width: calc(100% - 60px);
     }
     &__issues {
         display: block;

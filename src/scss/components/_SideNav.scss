@@ -1,68 +1,79 @@
 .sidenav {
-    width: 300px;
-    position: fixed;
-    background-color: $primary;
-    height: 100vh;
-    color: $white;
+    display: none;
     &__logo {
-        width: 100%;
-        height: 70px;
-        padding: 17px 12px;
-        background: rgba(0, 0, 0, .1);
-        margin-bottom: 3px;
-    }
-    &__logo-img {
-        height: 100%;
-        width: auto;
-        .cls-2{fill:#fff}.cls-3{fill:#ce7631}
-    }
-    &__list {
-        width: 100%;
         display: block;
-        min-height: 1px;
-        overflow: hidden;
-    }
-    &__item {
-        display: block;
-        min-height: 1px;
-        overflow: hidden;
-        width: 100%;
-        padding: 20px 10px 20px 20px;
-        border-left: 5px solid transparent;
-        margin-bottom: 1px;
-        cursor: pointer;
-    }
-    &__icon {
-        float: left;
-        margin-right: 12px;
-        i {
-            color: $white !important;
-        }
-    }
-    &__label {
-        position: relative;
-        top: 1px;
-        float: left;
-    }
-    &__sublist {
-        width: 100%;
-        display: block;
-        min-height: 1px;
-        overflow: hidden;
-    }
-    &__subitem {
-        display: block;
-        min-height: 1px;
-        overflow: hidden;
-        width: 100%;
-        padding: 20px 10px 20px 80px;
-        border-left: 5px solid transparent;
-        margin-bottom: 1px;
-        cursor: pointer;
+        z-index: 2000;
     }
 }
 
-.active {
-    background: rgba(0, 0, 0, .1);
-    border-left: 5px solid $secondary;
+@include bp(desktop) {
+    .sidenav {
+        display: block;
+        width: 300px;
+        position: fixed;
+        background-color: $primary;
+        height: 100vh;
+        color: $white;
+        &__logo {
+            width: 100%;
+            height: 70px;
+            padding: 17px 12px;
+            background: rgba(0, 0, 0, .1);
+            margin-bottom: 3px;
+        }
+        &__logo-img {
+            height: 100%;
+            width: auto;
+            .cls-2{fill:$white}.cls-3{fill:$secondary}
+        }
+        &__list {
+            width: 100%;
+            display: block;
+            min-height: 1px;
+            overflow: hidden;
+        }
+        &__item {
+            display: block;
+            min-height: 1px;
+            overflow: hidden;
+            width: 100%;
+            padding: 20px 10px 20px 20px;
+            border-left: 5px solid transparent;
+            margin-bottom: 1px;
+            cursor: pointer;
+        }
+        &__icon {
+            float: left;
+            margin-right: 12px;
+            i {
+                color: $white !important;
+            }
+        }
+        &__label {
+            position: relative;
+            top: 1px;
+            float: left;
+        }
+        &__sublist {
+            width: 100%;
+            display: block;
+            min-height: 1px;
+            overflow: hidden;
+        }
+        &__subitem {
+            display: block;
+            min-height: 1px;
+            overflow: hidden;
+            width: 100%;
+            padding: 20px 10px 20px 80px;
+            border-left: 5px solid transparent;
+            margin-bottom: 1px;
+            cursor: pointer;
+        }
+    }
+    
+    .active {
+        background: rgba(0, 0, 0, .1);
+        border-left: 5px solid $secondary;
+    }
 }

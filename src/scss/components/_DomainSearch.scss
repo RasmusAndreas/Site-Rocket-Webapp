@@ -5,11 +5,12 @@
     &__modal {
         border-radius: 2px;
         position: absolute;
-        top: 40px;
+        top: 80px;
         left: 50%;
         transform: translateX(-50%);
         width: 95%;
         max-width: 800px;
+        max-height: calc(100vh - 160px);
         background-color: $white;
         z-index: 1003;
         overflow-y: scroll;
@@ -18,6 +19,7 @@
         padding: 20px;
         width: 100%;
         outline: none;
+        color: $text;
     }
     &__list {
         width: 100%;
@@ -28,9 +30,15 @@
         height: 60px;
         line-height: 60px;
         border-top: 1px solid #ccc;
+        color: $text;
         padding: 0 20px;
         cursor: pointer;
     }
+}
+
+.search-label,
+.account-text {
+    display: none;
 }
 
 .focus {
@@ -39,4 +47,11 @@
 
 .selected {
     background-color: #ccc;
+}
+
+@include bp(desktop) {
+    .search-label,
+    .account-text {
+        display: inline-block;
+    }
 }

@@ -1,13 +1,14 @@
 .sidepanel {
-    width: 95%;
+    width: 85%;
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
-    padding: 60px;
+    padding: 60px 40px;
     text-align: left;
     background-color: #fff;
     z-index: 1002;
+    overflow-y: scroll;
 }
 .overlay {
     width: 100%;
@@ -21,14 +22,14 @@
     z-index: 1001;
 }
 
-@media only screen and (min-width: $tablet) {
+@include bp(tablet) {
     .sidepanel {
         width: 85%;
         padding: 100px;
     }
 }
 
-@media only screen and (min-width: $desktop) {
+@include bp(desktop) {
     .sidepanel {
         width: 50%;
         max-width: 800px;
