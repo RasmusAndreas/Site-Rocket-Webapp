@@ -1,23 +1,53 @@
 <template>
     <div>
         <div class="website-header">{{ header }}</div>
-        <div v-for="(url, index) in calcForOverview()" :key="index">
-            {{ url.url }}
-            <br>
-            Today {{ parseFloat(url.today).toFixed(2) }}s
-            <br>
-            Yesterday {{ parseFloat(url.yesterday).toFixed(2) }}s
-            <br>
-            Avg. {{ parseFloat(url.avg).toFixed(2) }}s
-            <br>
-            <br>
-        </div>
+        <v-data-table
+        :headers="table_headers"
+        :items="calcForOverview()"
+        :hide-actions="true"
+        no-data-text="Awesome! Your website hasn't had any major downtime since we started monitoring the site!"
+        >
+            <template slot="items" slot-scope="props">
+            <td class="">
+                {{ props.item.url }}
+            </td>
+            <td class="">
+                {{ checkNaN(props.item.today) }}s
+            </td>
+            <td class="">
+                {{ checkNaN(props.item.yesterday) }}s
+            </td>
+            <td class="">
+                {{ checkNaN(props.item.avg) }}s
+            </td>
+            </template>
+        </v-data-table>
     </div>
 </template>
 
 <script>
 export default {
     name: 'loadspeed-overview',
+    data() {
+        return {
+            table_headers: [{
+                text: 'URL',
+                sortable: false,
+            },
+            {
+                text: 'Todays avg.',
+                sortable: false,   
+            },
+            {
+                text: 'Yesterdays avg.',
+                sortable: false,   
+            },
+            {
+                text: 'Avg. loadspeed (last month)',
+                sortable: false,
+            }],
+        }
+    },
     props: {
         urls: {
             required: true,
@@ -80,6 +110,13 @@ export default {
             var x = a[key]; var y = b[key];
             return ((x > y) ? -1 : ((x > y) ? 1 : 0));
             });
+        },
+        checkNaN(value) {
+            if (isNaN(value)) {
+                return 0;
+            } else {
+                return parseFloat(value).toFixed(2);
+            }
         },
     },
     created() {

@@ -4,6 +4,7 @@ import Dashboard from './views/Dashboard.vue'
 import Forgot from './views/Forgot.vue'
 import Website from './views/Website.vue'
 import Reset from './views/Reset.vue'
+import Report from './views/Report.vue'
 
 Vue.use(Router)
 
@@ -59,5 +60,10 @@ export default new Router({
         requiresVisitor: true,
       },
     },
+    {
+      path: '/report/:key',
+      name: 'report',
+      component: Report,
+    }
   ]
 })

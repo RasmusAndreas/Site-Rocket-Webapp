@@ -114,10 +114,19 @@ export default {
             return obj;
         },
         confirmDelete() {
-            if(confirm('Are you sure you want to delete this website?')) {
-                alert('deleted!');
+            var sitename = prompt("Please enter the name of the site you want to delete from the system to confirm", "Website name");
+
+            if (sitename == null || sitename == "") {
+                let txt = "User cancelled the prompt.";
+                // eslint-disable-next-line
+                console.log(txt);
+            } else if (sitename != this.website.websiteName ) {
+                let txt = "WRONG!";
+                // eslint-disable-next-line
+                console.log(txt);
             } else {
-                alert('not deleted!');
+                // eslint-disable-next-line
+                console.log('Deleted');
             }
         }
     }
