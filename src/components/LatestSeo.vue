@@ -1,7 +1,10 @@
 <template>
     <div class="latest-seo" v-if="urls">
         <div class="latest-seo__header">Latest SEO issues</div>
-        <latest-seo-item v-for="url in urls.slice(0, 5).reverse()" :key="url.id" :url="url"/>
+        <div class="latest-seo__item" v-for="url in urls.slice(0, 5).reverse()" :key="url.id">
+            <div class="latest-seo__url">{{ url.url }}</div>
+            <div class="latest-seo__issues">{{ issues(url) }}</div>
+        </div>
     </div>
     <div class="latest-seo" v-else>
         <div class="latest-seo__header">Latest SEO issues</div>
@@ -10,22 +13,39 @@
 </template>
 
 <script>
-import LatestSeoItem from './LatestSeoItem';
 
 export default {
     name: 'latest-seo',
-    components: {
-        LatestSeoItem,
-    },
     props: {
         urls: {
             required: true,
         }
     },
-    mounted() {
-        // eslint-disable-next-line
-        //console.log(this.urls);
-    }
+    methods: {
+        issues(url) {
+            let issues = 0;
+            if(url.altText > 0) {
+                issues++;
+            } 
+            if(url.h1 != 1) {
+                issues++;
+            } 
+            if(url.metaDescription < 120 || url.metaDescription > 180) {
+                issues++;
+            } 
+            if(url.title < 50 || url.title > 70) {
+                issues++;
+            } 
+            if(url.wordCount < 300) {
+                issues++;
+            }
+            if(issues == 1) {
+                return issues + ' issue';
+            } else {
+                return issues + ' issues';
+            }
+        },
+    },
 }
 </script>
 
