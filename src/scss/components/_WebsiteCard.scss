@@ -1,0 +1,24 @@
+.website-card {
+    padding: 15px 0 0 0;
+    &__total-uptime {
+        padding: 5px 20px 30px 20px;
+        border-bottom: 1px solid #ebebeb;
+        min-height: 1px;
+        overflow: hidden;
+    }
+    &__week-uptime {
+        display: none;
+    }
+}
+
+@include bp(tablet) {
+    .website-card {
+        &__week-uptime {
+            display: block;
+            padding: 20px 20px 30px 20px;
+            border-bottom: 1px solid #ebebeb;
+            min-height: 1px;
+            overflow: hidden;
+        }
+    }
+}

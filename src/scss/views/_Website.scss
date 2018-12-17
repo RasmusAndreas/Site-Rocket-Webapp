@@ -1,16 +1,18 @@
 .website {
-    padding: 50px;
+    padding: 30px 20px;
     &__header {
-        height: 50px;
-        margin-bottom: 50px;
+        margin-bottom: 10px;
+        min-height: 1px;
+        overflow: hidden;
+        color: $faded-text;
         &__text {
-            float: left;
+            display: inline;
             font-size: 28px;
             color: $dark-text;
             line-height: 50px;
         }
         &__fadedtext {
-            float: left;
+            display: inline;
             font-size: 28px;
             color: $faded-text;
             line-height: 50px;
@@ -25,7 +27,7 @@
     top: 10px;
 }
 .website-header {
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 20px;
 }
 .website-card {
