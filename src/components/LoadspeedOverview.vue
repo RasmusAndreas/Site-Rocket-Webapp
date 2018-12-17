@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="calcForOverview().length > 0">
         <div class="website-header">{{ header }}</div>
         <v-data-table
         :headers="table_headers"

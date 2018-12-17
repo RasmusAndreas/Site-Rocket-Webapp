@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="website-header">{{ header }}</div>
+        <div class="website-header" v-if="calcFiveSlowLoadtimes().length > 0">{{ header }}</div>
         <div v-for="(loadtime, index) in calcFiveSlowLoadtimes()" :key="index">
             <div class="loadtime-slowest-pages-text">
                 <div class="loadtime-slowest-pages-url">{{ loadtime.url }} </div>
