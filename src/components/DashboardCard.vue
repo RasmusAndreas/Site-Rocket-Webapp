@@ -77,7 +77,13 @@ export default {
         },
         downPings() {
             if(this.website.uptimes) {
-                return this.website.uptimes.length;
+                let down = 0;
+                this.website.uptimes.forEach(uptime => {
+                    if (uptime.excludeDowntime == 0) {
+                        down++;
+                    }
+                });
+                return down;
             } else {
                 return 0;
             }

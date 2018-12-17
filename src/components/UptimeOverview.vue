@@ -15,7 +15,7 @@
             <td class="">
                 {{ props.item.statusCode }}
             </td>
-            <td class="" @click="updateUptime(props.item.id)">
+            <td class="" @click="updateUptime(props.item.id, props.item.excludeDowntime)">
                 <v-checkbox class="" v-model="props.item.excludeDowntime"></v-checkbox>
             </td>
             </template>
@@ -52,8 +52,17 @@ export default {
         }
     },
     methods: {
-        updateUptime(id) {
-            alert(id);
+        updateUptime(id, exclude) {
+            this.$store.dispatch('updateUptime', {
+                websiteid: this.$route.params.id,
+                uptimeid: id,
+                excludeDowntime: exclude,
+            }).then(() => {
+                
+            }).catch(error => {
+                // eslint-disable-next-line
+                console.log(error.response.data.message)
+            });
         }
     },
 }

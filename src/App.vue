@@ -13,7 +13,7 @@
         <router-view/>
       </div>
     </div>
-    <div>
+    <div v-if="$route.params.key">
       <report :website="0"/>
     </div>
   </div>

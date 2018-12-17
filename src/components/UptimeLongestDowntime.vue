@@ -25,18 +25,20 @@ export default {
             let temp = 0;
             let previousDown;
             this.uptimes.forEach(uptime => {
-                const downtimeDate = new Date(uptime.created_at);
-                if (previousDown) {
-                    if (downtimeDate - previousDown <= 300000) {
+                if (uptime.excludeDowntime == 0) {
+                    const downtimeDate = new Date(uptime.created_at);
+                    if (previousDown) {
+                        if (downtimeDate - previousDown <= 300000) {
+                            temp++;
+                        } else if (downtimeDate - previousDown > 300000) {
+                            longestDowntimes.push({amount: temp * 5, date: downtimeDate.getDate() + '/' + (downtimeDate.getMonth() + 1) + '-' + (downtimeDate.getYear() + 1900), percent: 0});
+                            temp = 1;
+                            previousDown = new Date(uptime.created_at);
+                        }
+                    } else {
                         temp++;
-                    } else if (downtimeDate - previousDown > 300000) {
-                        longestDowntimes.push({amount: temp * 5, date: downtimeDate.getDate() + '/' + (downtimeDate.getMonth() + 1) + '-' + (downtimeDate.getYear() + 1900), percent: 0});
-                        temp = 1;
                         previousDown = new Date(uptime.created_at);
                     }
-                } else {
-                    temp++;
-                    previousDown = new Date(uptime.created_at);
                 }
             });
             longestDowntimes.push({amount: temp * 5, date: previousDown.getDate() + '/' + (previousDown.getMonth() +1) + '-' + (previousDown.getYear() + 1900), percent: 0});
@@ -47,8 +49,6 @@ export default {
                 let percent = (downtime.amount / maximum) * 100;
                 downtime.percent = percent;
             });
-            // eslint-disable-next-line
-            console.log(sliced);
             return sliced;
         },
         sortByKey(array, key) {

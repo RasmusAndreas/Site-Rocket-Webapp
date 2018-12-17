@@ -5,7 +5,7 @@
         :headers="table_headers"
         :items="calcForOverview()"
         :hide-actions="true"
-        no-data-text="Awesome! Your website hasn't had any major downtime since we started monitoring the site!"
+        no-data-text="Awesome! Your website does not have any pages, that are slower than your set loadspeed."
         >
             <template slot="items" slot-scope="props">
             <td class="">
