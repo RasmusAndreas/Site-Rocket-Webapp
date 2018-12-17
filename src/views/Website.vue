@@ -1,10 +1,11 @@
 <template>
     <div class="website">
         <div v-if="websitedata">
-            <div class="website__header">
-                <div class="website__header__text">{{ websitedata.websiteName }}</div><div class="website__header__fadedtext">({{ websitedata.domain }})</div>
-                <v-btn v-if="showReport" @click="showShareReport = true">SHARE REPORT</v-btn>
+            <div class="website__header truncate">
+                <div class="website__header__text">{{ websitedata.websiteName }}</div>
+                <div class="website__header__fadedtext">({{ websitedata.domain }})</div>
             </div>
+            <v-btn v-if="showReport" @click="showShareReport = true">SHARE REPORT</v-btn>
             <v-tabs
             v-model="active"
             slider-color="grey">
