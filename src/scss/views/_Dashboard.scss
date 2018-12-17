@@ -4,8 +4,9 @@
     padding: 30px 20px;
     background-color: #F0F0F7;
     &__header {
-        height: 50px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        min-height: 1px;
+        overflow: hidden;
         &__button {
             float: right;
         }
@@ -14,16 +15,15 @@
             font-size: 28px;
             color: $dark-text;
             line-height: 50px;
+            position: relative;
+            top: -3px;
         }
     }
 }
 
 @include bp(desktop) {
     .dashboard {
-        padding: 50px;
         &__header {
-            height: 50px;
-            margin-bottom: 50px;
             &__button {
                 float: right;
             }

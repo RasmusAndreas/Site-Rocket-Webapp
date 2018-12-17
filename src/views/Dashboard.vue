@@ -2,7 +2,7 @@
   <div class="dashboard">
     <div class="dashboard__header">
       <div class="dashboard__header__text">Overview</div>
-      <v-btn class="dashboard__header__button button-primary" @click="togglePanel()">ADD NEW</v-btn>
+      <button class="dashboard__header__button button-primary" @click="togglePanel()">ADD NEW</button>
     </div>
     <div v-if="!loading">
       <dashboard-card v-for="website in websites" :key="website.id" :website="website" />
