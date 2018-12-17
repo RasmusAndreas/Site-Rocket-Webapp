@@ -35,3 +35,7 @@
     min-width: 1px;
     overflow: hidden;
 }
+
+.v-tabs__item--active {
+    color: $secondary !important;
+}

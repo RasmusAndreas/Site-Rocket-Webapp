@@ -1,0 +1,14 @@
+.longest-downtime {
+    &__item {
+        margin-bottom: 20px;
+    }
+    &__time,
+    &__date {
+        font-size: 15px;
+        line-height: 1;
+        color: $faded-text;
+    }
+    &__time {
+        float: right;
+    }
+}

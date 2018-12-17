@@ -8,7 +8,7 @@
             <v-btn v-if="showReport" @click="showShareReport = true">SHARE REPORT</v-btn>
             <v-tabs
             v-model="active"
-            slider-color="grey">
+            slider-color="#CE7631">
                 <v-tab ripple @click="showReport = false">
                     Uptime
                 </v-tab>
@@ -23,7 +23,9 @@
                         <div class="website-card__longest-uptime">
                             <uptime-longest-downtime :uptimes="websitedata.uptimes" header="Longest downtime"/>
                         </div>
-                        <uptime-overview :uptimes="websitedata.uptimes" header="Downtime overview"/>
+                        <div class="website-card__downtime-overview">
+                            <uptime-overview :uptimes="websitedata.uptimes" header="Downtime overview"/>
+                        </div>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item v-else>

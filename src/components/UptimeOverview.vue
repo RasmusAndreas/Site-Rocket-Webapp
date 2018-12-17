@@ -1,25 +1,20 @@
 <template>
     <div>
         <div class="website-header">{{ header }}</div>
-        <v-data-table
-        :headers="table_headers"
-        :items="uptimes"
-        :hide-actions="true"
-        class="elevation-1"
-        no-data-text="Awesome! Your website hasn't had any major downtime since we started monitoring the site!"
-        >
-            <template slot="items" slot-scope="props">
-            <td class="">
-                {{ props.item.created_at }}
-            </td>
-            <td class="">
-                {{ props.item.statusCode }}
-            </td>
-            <td class="" @click="updateUptime(props.item.id, props.item.excludeDowntime)">
-                <v-checkbox class="" v-model="props.item.excludeDowntime"></v-checkbox>
-            </td>
-            </template>
-        </v-data-table>
+        <table cellspacing="0" class="uptime-overview">
+            <tr class="uptime-overview__headers">
+                <td class="uptime-overview__header" v-for="(header, index) in table_headers" :key="index">{{ header.text }}</td>
+            </tr>
+            <tr class="uptime-overview__data-row" v-for="uptime in uptimes" :key="uptime.id">
+                <td class="uptime-overview__data uptime-overview__date">{{ uptime.created_at }}</td>
+                <td class="uptime-overview__data uptime-overview__code">{{ uptime.statusCode }}</td>
+                <td class="uptime-overview__data uptime-overview__checkbox">
+                    <div class="uptime-overview__checkbox-inner">
+                        <v-checkbox class="" v-model="uptime.excludeDowntime" @change="updateUptime(uptime.id, uptime.excludeDowntime)"></v-checkbox>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 </template>
 
