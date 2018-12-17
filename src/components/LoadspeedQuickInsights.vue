@@ -1,7 +1,7 @@
 <template>
     <div class="loadspeed-insight-container">
         <div class="loadspeed-insight-header">{{ header }}</div>
-        <div>
+        <div v-if="checkNaN(urls.avg) > 0">
             <div class="loadspeed-insight-item">
                 <img class="loadspeed-icon" src="../assets/icon-fast.png">
                 <div class="loadspeed-insight-text text-fast">{{ checkInfinite(urls.fast) }}s</div>
@@ -17,6 +17,9 @@
                 <div class="loadspeed-insight-text text-slow">{{ checkInfinite(urls.slow) }}s</div>
                 <div class="subtext-loadspeed-insight">Slowest loadspeed</div>
             </div>
+        </div>
+        <div v-else>
+            <p>There has been no visits to your site, since you integrated the monitoring.</p>
         </div>
     </div>
 </template>

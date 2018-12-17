@@ -9,13 +9,16 @@
       </div>
       <div class="dashboard-card__content">
         <div class="dashboard-uptime">
-          <total-uptime :uptime="parseFloat(this.upTime()).toFixed(2)" :downtime="parseFloat(100 - this.upTime()).toFixed(2)" />
+          <total-uptime :uptime="parseFloat(this.upTime()).toFixed(2)" :downtime="parseFloat(100 - this.upTime()).toFixed(2)" v-if="settingsSplit().uptime == 1" />
+          <div v-else>Uptime monitoring not activated, go to settings to active it.</div>
         </div>
         <div class="dashboard-loadspeed">
-          <loadspeed-quick-insights :urls="allLoadtimesCalc()" header="Loadspeed Summary" />
+          <loadspeed-quick-insights :urls="allLoadtimesCalc()" header="Loadspeed Summary" v-if="settingsSplit().loadtime == 1" />
+          <div v-else>Loadspeed monitoring not activated, go to settings to active it.</div>
         </div>
         <div class="dashboard-seo">
-          <latest-seo :urls="website.urls" />
+          <latest-seo :urls="website.urls" v-if="settingsSplit().seo == 1" />
+          <div v-else>SEO monitoring not activated, go to settings to active it.</div>
         </div>
       </div>
     </div>
@@ -95,6 +98,15 @@ export default {
             } else {
                 return 100
             }
+        },
+        settingsSplit() {
+            const settingsSplit = this.website.featureSettings.split(';');
+            var obj = {};
+            for (var i = 0; i < settingsSplit.length; i++) {
+                var split = settingsSplit[i].split(':');
+                obj[split[0]] = split[1];
+            }
+            return obj;
         },
     },
     mounted() {

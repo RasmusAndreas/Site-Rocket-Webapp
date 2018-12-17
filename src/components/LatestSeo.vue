@@ -1,5 +1,5 @@
 <template>
-    <div class="latest-seo" v-if="urls">
+    <div class="latest-seo" v-if="urls.length > 0">
         <div class="latest-seo__header">Latest SEO issues</div>
         <div class="latest-seo__item" v-for="url in urls.slice(0, 5).reverse()" :key="url.id">
             <div class="latest-seo__url truncate">{{ url.url }}</div>
@@ -8,7 +8,7 @@
     </div>
     <div class="latest-seo" v-else>
         <div class="latest-seo__header">Latest SEO issues</div>
-        <p>No data yet</p>
+        <p>There has been no visits to your site, since you integrated the monitoring.</p>
     </div>
 </template>
 

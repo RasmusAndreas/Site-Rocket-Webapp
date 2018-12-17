@@ -6,6 +6,7 @@
     </div>
     <div v-if="!loading">
       <dashboard-card v-for="website in websites" :key="website.id" :website="website" />
+      <div v-if="websites.length == 0">There is no websites yet, to start getting data, go add a new website.</div>
     </div>
     <div class="loadbox" v-else>
       <v-progress-circular
@@ -101,6 +102,6 @@ export default {
     loading() {
       return this.$store.state.loading;
     }
-  }
+  },
 }
 </script>
