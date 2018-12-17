@@ -46,3 +46,22 @@
 .v-input--selection-controls {
     margin: 0 !important;
 }
+
+@include bp(tablet) {
+    .uptime-overview {
+        &__header {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            &:first-child {
+                padding-left: 15px;
+            }
+            &:last-child {
+                padding-right: 15px;
+            }
+        }
+        &__data {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+    }
+}

@@ -83,3 +83,19 @@
         transform: translateY(-50%) translateX(-50%) rotate(-90deg);
     } 
 }
+
+@include bp(tv) {
+    .uptime-week__percent {
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 40px;
+            width: 480px;
+            height: 1px;
+            background-color: #EAF0F4;
+        }
+    }
+}

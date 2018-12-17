@@ -12,4 +12,7 @@
     @else if $point == tv {
         @media (min-width: $tv)  { @content; }
     }
+    @else if $point == bigtv {
+        @media (min-width: $bigtv)  { @content; }
+    }
 }

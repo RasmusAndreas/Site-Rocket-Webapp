@@ -44,11 +44,28 @@
             padding: 20px 20px 65px 20px;
             min-height: 1px;
             overflow: hidden;
-            border-left: 1px solid #ebebeb;
         }
         &__longest-uptime {
             border-top: 1px solid #ebebeb;
             margin-top: 20px;
+        }
+    }
+}
+
+@include bp(bigtv) {
+    .website-card {
+        &__total-uptime {
+            width: 300px;
+            float: left;
+        }
+        &__week-uptime {
+            width: 560px;
+            float: left;
+        }
+        &__longest-uptime {
+            border: 0;
+            width: calc(100% - 860px);
+            float: left;
         }
     }
 }
