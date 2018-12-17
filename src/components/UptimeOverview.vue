@@ -10,7 +10,7 @@
                 <td class="uptime-overview__data uptime-overview__code">{{ uptime.statusCode }}</td>
                 <td class="uptime-overview__data uptime-overview__checkbox">
                     <div class="uptime-overview__checkbox-inner">
-                        <v-checkbox class="" v-model="uptime.excludeDowntime" @change="updateUptime(uptime.id, uptime.excludeDowntime)"></v-checkbox>
+                        <v-checkbox color="#27ae60" v-model="uptime.excludeDowntime" @change="updateUptime(uptime.id, uptime.excludeDowntime)"></v-checkbox>
                     </div>
                 </td>
             </tr>
