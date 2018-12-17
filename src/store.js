@@ -187,5 +187,45 @@ export default new Vuex.Store({
         })
       })
     },
+    deleteWebsite(context, id) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
+
+      return new Promise((resolve, reject) => {
+        axios.delete('/api/websites/' + id.websiteid, {
+          params: {  }
+        }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    updateWebsite(context, id) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
+
+      return new Promise((resolve, reject) => {
+        axios.patch('/api/websites/' + id.websiteid, {
+          websiteName: id.websiteName,
+          featureSettings: id.settings,
+        }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    updateUptime(context, id) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
+
+      return new Promise((resolve, reject) => {
+        axios.patch('/api/websites/' + id.websiteid + '/uptimes/' + id.uptimeid, {
+          excludeDowntime: id.excludeDowntime,
+        }).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
   }
 })

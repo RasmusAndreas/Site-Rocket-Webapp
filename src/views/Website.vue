@@ -12,7 +12,7 @@
                 <v-tab ripple @click="showReport = false">
                     Uptime
                 </v-tab>
-                <v-tab-item>
+                <v-tab-item v-if="settingsSplit().uptime == 1">
                     <v-card flat class="website-card" v-if="websitedata">
                         <div class="website-card__total-uptime">
                             <total-uptime :uptime="parseFloat(this.upTime()).toFixed(2)" :downtime="parseFloat(100 - this.upTime()).toFixed(2)" />
@@ -26,24 +26,39 @@
                         <uptime-overview :uptimes="websitedata.uptimes" header="Downtime overview"/>
                     </v-card>
                 </v-tab-item>
+                <v-tab-item v-else>
+                    <v-card>
+                        Uptime monitoring not activated, go to settings to active it.
+                    </v-card>
+                </v-tab-item>
 
                 <v-tab ripple @click="showReport = false">
                     SEO
                 </v-tab>
-                <v-tab-item>
+                <v-tab-item v-if="settingsSplit().seo == 1">
                     <v-card flat class="website-card" v-if="websitedata">
                         <seo-table :urls="websitedata.urls" header="SEO status"/>
+                    </v-card>
+                </v-tab-item>
+                <v-tab-item v-else>
+                    <v-card>
+                        SEO monitoring not activated, go to settings to active it.
                     </v-card>
                 </v-tab-item>
 
                 <v-tab ripple @click="showReport = false">
                     Loadspeed
                 </v-tab>
-                <v-tab-item>
+                <v-tab-item v-if="settingsSplit().loadtime == 1">
                     <v-card flat class="website-card" v-if="websitedata">
                         <loadspeed-quick-insights :urls="allLoadtimesCalc()" header="Quick insight" />
                         <loadspeed-slowest-pages :urls="websitedata.urls" header="Slowest pages" />
                         <loadspeed-overview :urls="websitedata.urls" header="Loadspeed overview" />
+                    </v-card>
+                </v-tab-item>
+                <v-tab-item v-else>
+                    <v-card>
+                        Loadspeed monitoring not activated, go to settings to active it.
                     </v-card>
                 </v-tab-item>
 
@@ -153,7 +168,13 @@ export default {
         },
         downPings() {
             if(this.websitedata.uptimes) {
-                return this.websitedata.uptimes.length;
+                let down = 0;
+                this.websitedata.uptimes.forEach(uptime => {
+                    if (uptime.excludeDowntime == 0) {
+                        down++;
+                    }
+                });
+                return down;
             } else {
                 return 0;
             }
@@ -173,6 +194,15 @@ export default {
         mailSent() {
             this.showShareReport = false;
             this.mailsent = 'AWESOME! A MAIL HAS BEEN SENT!';
+        },
+        settingsSplit() {
+            const settingsSplit = this.websitedata.featureSettings.split(';');
+            var obj = {};
+            for (var i = 0; i < settingsSplit.length; i++) {
+                var split = settingsSplit[i].split(':');
+                obj[split[0]] = split[1];
+            }
+            return obj;
         },
     },
     watch: {

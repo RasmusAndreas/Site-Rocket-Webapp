@@ -29,7 +29,8 @@
                 label="Enable Loadtime"
                 required
             ></v-checkbox>
-            <vue-slide-bar v-model="maxloadspeed"
+            <vue-slide-bar 
+            v-model="maxloadspeed"
             :min="1"
             :max="10"
             :data="increments"
@@ -56,7 +57,7 @@ export default {
             checkseo: parseInt(this.settingsSplit().seo),
             checkloadtime: parseInt(this.settingsSplit().loadtime),
             loadspeed: '',
-            maxloadspeed: 0,
+            maxloadspeed: parseInt(this.settingsSplit().maxload) / 1000,
             increments: [
                 1,1.2,1.4,1.6,1.8,
                 2.0,2.2,2.4,2.6,2.8,
@@ -95,14 +96,27 @@ export default {
             if (this.checkloadtime) {
                 this.settings = this.settings + 'loadtime:1;';
             } else {
-                this.settings = this.settings + 'loadtime:0;';
+                this.settings = this.settings + 'loadtime:0';
                 this.maxloadspeed = 0;
             }
             // max loadspeed
             if (this.maxloadspeed !== 0) {
-                this.settings = this.settings + 'maxload:' + (this.maxloadspeed * 1000) + ';';
+                this.settings = this.settings + 'maxload:' + (this.maxloadspeed * 1000);
             }
             alert(this.name + ' ' + this.domain + ' ' + this.settings);
+            this.$store.dispatch('updateWebsite', {
+                websiteid: this.$route.params.id,
+                settings: this.settings,
+                websiteName: this.name,
+            }).then(response => {
+                // eslint-disable-next-line
+                console.log(response.data[0]);
+                this.navigateTo('/website/' + this.$route.params.id);
+            }).catch(error => {
+                this.error = 'E-mail or password is incorrect'
+                // eslint-disable-next-line
+                console.log(error.response.data.message)
+            });
         },
         settingsSplit() {
             const settingsSplit = this.website.featureSettings.split(';');
@@ -125,10 +139,22 @@ export default {
                 // eslint-disable-next-line
                 console.log(txt);
             } else {
-                // eslint-disable-next-line
-                console.log('Deleted');
+                this.$store.dispatch('deleteWebsite', {
+                    websiteid: this.$route.params.id,
+                }).then(response => {
+                    // eslint-disable-next-line
+                    console.log(response.data[0]);
+                    this.navigateTo('/');
+                }).catch(error => {
+                    this.error = 'E-mail or password is incorrect'
+                    // eslint-disable-next-line
+                    console.log(error.response.data.message)
+                });
             }
-        }
+        },
+        navigateTo(path) {
+            this.$router.push(path);
+        },
     }
 }
 </script>

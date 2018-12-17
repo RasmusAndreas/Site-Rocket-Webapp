@@ -39,10 +39,12 @@ export default {
             let uptime = 0;
             let dateOne = '';
             this.uptimes.forEach(uptime => {
-                const downtimeDate = new Date(uptime.created_at);
-                const dateNow = new Date();
-                if (downtimeDate.getDate() == dateNow.getDate() - days) {
-                    temp.push(uptime);
+                if (uptime.excludeDowntime == 0) {
+                    const downtimeDate = new Date(uptime.created_at);
+                    const dateNow = new Date();
+                    if (downtimeDate.getDate() == dateNow.getDate() - days) {
+                        temp.push(uptime);
+                    }
                 }
             });
             const day = new Date();
