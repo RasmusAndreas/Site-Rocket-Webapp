@@ -102,6 +102,6 @@ export default {
     loading() {
       return this.$store.state.loading;
     }
-  }
+  },
 }
 </script>
