@@ -1,7 +1,7 @@
 <template>
-    <div v-if="uptimes.length > 0">
+    <div v-if="uptimes.length > 0" class="longest-downtime">
         <div class="website-header">{{ header }}</div>
-        <div v-for="(downtime, index) in calcLongestDowntimes()" :key="index">{{ downtime.amount }} minutes
+        <div v-for="(downtime, index) in calcLongestDowntimes()" :key="index" class="longest-downtime__item"><span class="longest-downtime__date">{{ downtime.date }}</span> <span class="longest-downtime__time">{{ downtime.amount }} min.</span>
             <v-progress-linear :value="downtime.percent" color="#E74C3C" height="5" background-color="#EDF0F5"></v-progress-linear>
         </div>
     </div>

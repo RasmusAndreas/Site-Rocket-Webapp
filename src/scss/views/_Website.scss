@@ -35,3 +35,14 @@
     min-width: 1px;
     overflow: hidden;
 }
+
+.v-tabs__item--active {
+    color: $secondary !important;
+}
+
+@include bp(desktop) {
+    .website__header__text,
+    .website__header__fadedtext {
+        font-size: 24px;
+    }
+}

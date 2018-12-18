@@ -60,3 +60,14 @@
         color: $faded-text;
     }
 }
+
+@include bp(tablet) {
+    .total-uptime {
+        &__graph {
+            margin-top: 50px;
+        }
+        &__data {
+            margin-top: 50px;
+        }
+    }
+}

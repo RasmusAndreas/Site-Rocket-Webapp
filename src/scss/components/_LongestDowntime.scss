@@ -1,0 +1,22 @@
+.longest-downtime {
+    &__item {
+        margin-bottom: 20px;
+    }
+    &__time,
+    &__date {
+        font-size: 15px;
+        line-height: 1;
+        color: $faded-text;
+    }
+    &__time {
+        float: right;
+    }
+}
+
+@include bp(tv) {
+    .longest-downtime {
+        .v-progress-linear {
+            margin: .5rem 0 1rem 0;
+        }
+    }
+}

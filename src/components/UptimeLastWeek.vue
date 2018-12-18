@@ -1,21 +1,25 @@
 <template>
     <div class="uptime-week">
         <div class="website-header">{{ header }}</div>
-        <div class="uptime-sidetext">
-            <p>100%</p>
-            <p>80%</p>
-            <p>60%</p>
-            <p>40%</p>
-            <p>20%</p>
-            <p>0%</p>
+        <div class="uptime-week__sidetext">
+            <div class="uptime-week__percent">100%</div>
+            <div class="uptime-week__percent">80%</div>
+            <div class="uptime-week__percent">60%</div>
+            <div class="uptime-week__percent">40%</div>
+            <div class="uptime-week__percent">20%</div>
+            <div class="uptime-week__percent">0%</div>
         </div>
-        <div class="uptime-week-item" v-for="(days, index) in this.getUptimes()" :key="index">
-            <div class="uptime-week-graph">
-                <div class="uptime-week-graph-item"></div>
+        <div class="uptime-week__days">
+            <div class="uptime-week__item" v-for="(days, index) in this.getUptimes()" :key="index">
+                <div class="uptime-week__graph" :style="'height: ' + parseFloat(days.uptime).toFixed(2) + '%;'">
+                    <div class="uptime-week-graph-item"></div>
+                    <div class="uptime-week__value">{{ parseFloat(days.uptime).toFixed(2) }}%</div>
+                </div>
             </div>
-            <div class="uptime-week-text">
-                <p>{{ days.date }}</p>
-                <p>{{ parseFloat(days.uptime).toFixed(2) }}%</p>
+        </div>
+        <div class="uptime-week__dates">
+            <div class="uptime-week__date" v-for="(days, index) in this.getUptimes()" :key="index">
+                {{ days.date }}
             </div>
         </div>
     </div>
