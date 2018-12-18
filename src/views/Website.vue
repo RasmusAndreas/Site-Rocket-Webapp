@@ -34,8 +34,8 @@
                     </v-card>
                 </v-tab-item>
                 <v-tab-item v-else>
-                    <v-card>
-                        Uptime monitoring not activated, go to settings to active it.
+                    <v-card class="website__no-data">
+                        Uptime monitoring not activated, go to settings to activate it.
                     </v-card>
                 </v-tab-item>
 
@@ -48,8 +48,8 @@
                     </v-card>
                 </v-tab-item>
                 <v-tab-item v-else>
-                    <v-card>
-                        SEO monitoring not activated, go to settings to active it.
+                    <v-card class="website__no-data">
+                        SEO monitoring not activated, go to settings to activate it.
                     </v-card>
                 </v-tab-item>
 
@@ -70,8 +70,8 @@
                     </v-card>
                 </v-tab-item>
                 <v-tab-item v-else>
-                    <v-card>
-                        Loadspeed monitoring not activated, go to settings to active it.
+                    <v-card class="website__no-data">
+                        Loadspeed monitoring not activated, go to settings to activate it.
                     </v-card>
                 </v-tab-item>
 

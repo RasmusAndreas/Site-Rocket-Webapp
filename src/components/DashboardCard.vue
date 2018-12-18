@@ -10,15 +10,15 @@
       <div class="dashboard-card__content">
         <div class="dashboard-uptime">
           <total-uptime :uptime="parseFloat(this.upTime()).toFixed(2)" :downtime="parseFloat(100 - this.upTime()).toFixed(2)" v-if="settingsSplit().uptime == 1" />
-          <div v-else>Uptime monitoring not activated, go to settings to active it.</div>
+          <div class="dashboard-card__no-data" v-else>Uptime monitoring not activated, go to settings to activate it.</div>
         </div>
         <div class="dashboard-loadspeed">
           <loadspeed-quick-insights :urls="allLoadtimesCalc()" header="Loadspeed Summary" v-if="settingsSplit().loadtime == 1" />
-          <div v-else>Loadspeed monitoring not activated, go to settings to active it.</div>
+          <div class="dashboard-card__no-data" v-else>Loadspeed monitoring not activated, go to settings to activate it.</div>
         </div>
         <div class="dashboard-seo">
           <latest-seo :urls="website.urls" v-if="settingsSplit().seo == 1" />
-          <div v-else>SEO monitoring not activated, go to settings to active it.</div>
+          <div v-else class="dashboard-card__no-data">SEO monitoring not activated, go to settings to activate it.</div>
         </div>
       </div>
     </div>
