@@ -12,7 +12,7 @@
             :value="snippet"
         ></v-textarea>
         <p>The snippet has to be inserted before the &#60;/body> on all pages that needs to be tracked.</p>
-        <v-btn @click="next">Done</v-btn>
+        <a class="button-primary float-left" @click="next">Done</a>
     </div>
 </template>
 

@@ -19,10 +19,12 @@
             ></v-text-field>
             <div v-if="error">{{ error }}</div>
             <router-link class="forgot-link" :to="{ name: 'forgot' }">Forgot password</router-link>
-            <v-btn 
+            <br>
+            <br>
+            <a class="button-primary float-left"
                 @click.prevent="login"
-                >Login</v-btn>
-            <v-btn @click="navigateTo('/signup')" outline>SIGN UP</v-btn>
+                >Login</a>
+            <a class="button-outline-primary float-left twobutton-margin" @click="navigateTo('/signup')">SIGN UP</a>
         </v-form>
     </div>
 </template>

@@ -83,12 +83,15 @@
                         <report :website="websitedata"/>
                     </v-card>
                 </v-tab-item>
-                <div class="settingsbutton" @click="showSettings = true">
+                <div class="settingsbutton" @click="showSettingsMenu = !showSettingsMenu">
                     <v-icon>settings</v-icon>
                 </div>
             </v-tabs>
             <side-panel v-if="showSettings" @closePanel="showSettings = false">
                 <website-settings-form :website="websitedata" @updateWebsite="updatedWebsite()"/>
+            </side-panel>
+            <side-panel v-if="showIntegration" @closePanel="showIntegration = false">
+                <add-new-step-four :newWebsite="websitedata" @nextFinal="showIntegration = false"/>
             </side-panel>
             <side-panel v-if="showShareReport" @closePanel="showShareReport = false">
                 <share-report :reportLink="websitedata.reportLink" @copyToast="copyToast()" @mailSent="mailSent()"/>
@@ -96,6 +99,12 @@
             <system-toast :message="shared" @reset="shared = ''" v-if="shared != ''" />
             <system-toast :message="mailsent" @reset="mailsent = ''" v-if="mailsent != ''" />
             <system-toast :message="updatedWebsiteToast" @reset="updatedWebsiteToast = ''" v-if="updatedWebsiteToast != ''" />
+            <div class="settings-menu" v-if="showSettingsMenu">
+                <ul class="settings-menu__list">
+                    <li class="settings-menu__item" @click="showSettings = true; showSettingsMenu = false">Settings</li>
+                    <li class="settings-menu__item" @click="showIntegration = true; showSettingsMenu = false">Integration</li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -114,6 +123,7 @@ import WebsiteSettingsForm from '../components/WebsiteSettingsForm.vue';
 import ShareReport from '../components/ShareReport.vue';
 import SystemToast from '../components/SystemToast.vue';
 import Report from '../views/Report.vue';
+import AddNewStepFour from '../components/AddNewStepFour.vue';
 
 export default {
     name: 'website',
@@ -121,6 +131,7 @@ export default {
         LoadspeedQuickInsights,
         LoadspeedSlowestPages,
         LoadspeedOverview,
+        AddNewStepFour,
         TotalUptime,
         UptimeLastWeek,
         UptimeOverview,
@@ -138,8 +149,10 @@ export default {
         websitedata: null,
         websites: this.$store.state.websites,
         showSettings: false,
+        showSettingsMenu: false,
         showReport: false,
         showShareReport: false,
+        showIntegration: false,
         shared: '',
         mailsent: '',
         updatedWebsiteToast: '',

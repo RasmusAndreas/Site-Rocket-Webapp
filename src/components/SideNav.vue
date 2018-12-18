@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="sidenav__sublist" v-if="!loading">
-        <div class="sidenav__subitem"
+        <div class="sidenav__subitem truncate"
           v-for="website in websites"
           :key="website.id"
           @click="navigateTo('/website/'.concat(website.id))"

@@ -17,9 +17,9 @@
             @click:append="show = !show"
           ></v-text-field>
           <div v-if="error">{{ error }}</div>
-            <v-btn 
+            <a class="button-secondary float-left"
             @click.prevent="reset"
-            >Change password</v-btn>
+            >Change password</a>
     </v-form>
 </template>
 
