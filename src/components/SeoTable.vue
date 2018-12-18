@@ -45,7 +45,10 @@
         >
             <template slot="items" slot-scope="props">
                 <tr @click="props.expanded = !props.expanded" v-if="!checkAllSeo(props.item)">
-                    <td>{{ props.item.url }}</td>
+                    <td>
+                        <i class="material-icons seo-table__arrow" :style="props.expanded ? 'transform: rotate(90deg);' : 'transform: rotate(0deg);'">keyboard_arrow_right</i>
+                        {{ props.item.url }}
+                    </td>
 
                     <td class="text-xs-center" v-if="props.item.title >= 50 && props.item.title <= 70"><v-icon color="green">check_circle_outline</v-icon></td>
                     <td class="text-xs-center" v-else><v-icon color="red">error_outline</v-icon></td>
@@ -59,36 +62,79 @@
                     <td class="text-xs-center" v-if="props.item.altText == 0"><v-icon color="green">check_circle_outline</v-icon></td>
                     <td class="text-xs-center" v-else><v-icon color="red">error_outline</v-icon></td>
 
-                    <td class="text-xs-center" v-if="props.item.wordCount >= 300"><v-icon color="green">check_circle_outline</v-icon></td>
-                    <td class="text-xs-center" v-else><v-icon color="red">error_outline</v-icon></td>
+                    <td class="text-xs-center" v-if="props.item.wordCount >= 300">
+                        <span class="wc-good">{{ props.item.wordCount }}</span>
+                    </td>
+                    <td class="text-xs-center" v-else>
+                        <span class="wc-bad">{{ props.item.wordCount }}</span>
+                    </td>
 
                     <td class="seo-table__issues-mobile" style="display: none;">issues</td>
                 </tr>
             </template>
             <template slot="expand" slot-scope="props">
                 <v-card flat>
-                    <div v-if="props.item.title < 50 || props.item.title > 70">
+                    <div class="seo-table__issue" v-if="props.item.title < 50 || props.item.title > 70">
                         <div class="seo-table__issue-icon">
                             <v-icon color="red">error_outline</v-icon>
                         </div>
                         <div class="seo-table__issue-text">
                             <div class="seo-table__heading">Page title</div>
                             <div class="seo-table__description">
-                                The title of the current URL, is <b>{{ props.item.title }} characters</b> long. The recommended title length is between 50 and 70 characters.
+                                <p>The title of the current URL, is <b>{{ props.item.title }} characters</b> long. The recommended title length is between 50 and 70 characters.</p>
                             </div>
                         </div>
                     </div>
-                    <div v-if="props.item.metaDescription < 120 || props.item.metaDescription > 180">
-                        problem metaDescription
+                    <div class="seo-table__issue" v-if="props.item.metaDescription < 120 || props.item.metaDescription > 180">
+                        <div class="seo-table__issue-icon">
+                            <v-icon color="red">error_outline</v-icon>
+                        </div>
+                        <div class="seo-table__issue-text">
+                            <div class="seo-table__heading">Meta description</div>
+                            <div class="seo-table__description">
+                                <div v-if="props.item.metaDescription != 0">
+                                    <p>The meta description of the current URL, is <b>{{ props.item.metaDescription }} characters</b> long. The recommended meta description length is between 120 and 180 characters.</p>
+                                </div>
+                                <div v-else>
+                                    <p>The current URL, does not contain a meta description. The recommended meta description length is between 120 and 180 characters.</p>
+                                </div>
+                                <p>Search engines displays this text below the page title in search results.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div v-if="props.item.h1 != 1">
-                        problem h1
+                    <div class="seo-table__issue" v-if="props.item.h1 != 1">
+                        <div class="seo-table__issue-icon">
+                            <v-icon color="red">error_outline</v-icon>
+                        </div>
+                        <div class="seo-table__issue-text">
+                            <div class="seo-table__heading">H1 tags</div>
+                            <div class="seo-table__description">
+                                <p>The current URL contains <b>{{ props.item.h1 }} H1 tags</b>. A page should contain no more and no less than one H1 header.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div v-if="props.item.altText > 0">
-                        problem alt texts
+                    <div class="seo-table__issue" v-if="props.item.altText > 0">
+                        <div class="seo-table__issue-icon">
+                            <v-icon color="red">error_outline</v-icon>
+                        </div>
+                        <div class="seo-table__issue-text">
+                            <div class="seo-table__heading">Alt-attr.</div>
+                            <div class="seo-table__description">
+                                <p>There are <b>{{ props.item.altText }} images</b> on this URL with no alt attribute defined. The alt attributes is used in Google image search. The alt attributes are also used by screen readers, used by users with vision 
+                                disabilities.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div v-if="props.item.wordCount < 300">
-                        problem wordcount
+                    <div class="seo-table__issue" v-if="props.item.wordCount < 300">
+                        <div class="seo-table__issue-icon">
+                            <v-icon color="red">error_outline</v-icon>
+                        </div>
+                        <div class="seo-table__issue-text">
+                            <div class="seo-table__heading">Word count</div>
+                            <div class="seo-table__description">
+                                <p>The current page contains <b>{{ props.item.wordCount }} words</b>. The recommended word count word count is above <b>300 words</b>.</p>
+                            </div>
+                        </div>
                     </div>
                 </v-card>
             </template>
@@ -108,27 +154,27 @@ export default {
                 align: 'left',
             },
             {
-                text: 'TITLE TAG',
+                text: 'Title tag',
                 sortable: false,
                 align: 'center',
             },
             {
-                text: 'META DESCRIPTION',
+                text: 'Meta description',
                 sortable: false,
                 align: 'center',   
             },
             {
-                text: 'H-TAGS',
+                text: 'H-Tags',
                 sortable: false,
                 align: 'center',   
             },
             {
-                text: 'ALT-ATTR.',
+                text: 'Alt-attr.',
                 sortable: false,
                 align: 'center',   
             },
             {
-                text: 'WORD COUNT',
+                text: 'Word count',
                 sortable: false,
                 align: 'center',   
             }]

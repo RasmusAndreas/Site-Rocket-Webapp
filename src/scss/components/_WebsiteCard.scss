@@ -1,7 +1,7 @@
 .website-card {
     padding: 15px 0 0 0;
     &__total-uptime {
-        padding: 5px 20px 30px 20px;
+        padding: 20px 20px 30px 20px;
         border-bottom: 1px solid #ebebeb;
         min-height: 1px;
         overflow: hidden;
@@ -21,11 +21,43 @@
         min-height: 1px;
         overflow: hidden;
     }
+    &__quick-insight {
+        padding: 20px 20px 30px 20px;
+        border-bottom: 1px solid #ebebeb;
+        min-height: 1px;
+        overflow: hidden;
+    }
+    &__slowest-loadspeed {
+        padding: 20px 20px 30px 20px;
+        border-bottom: 1px solid #ebebeb;
+        min-height: 1px;
+        overflow: hidden;
+    }
+    &__loadspeed-overview {
+        padding: 20px 20px 30px 20px;
+        border-bottom: 1px solid #ebebeb;
+        min-height: 1px;
+        overflow: hidden;
+    }
 }
 
 @include bp(tablet) {
     .website-card {
         &__total-uptime {
+            width: 50%;
+            float: left;
+            border: 0;
+        }
+        &__longest-uptime {
+            border: 0;
+        }
+        &__quick-insight {
+            border-bottom: 0;
+            width: 50%;
+            float: left;
+        }
+        &__slowest-loadspeed {
+            border-bottom: 0;
             width: 50%;
             float: left;
         }
@@ -48,6 +80,23 @@
         &__longest-uptime {
             border-top: 1px solid #ebebeb;
             margin-top: 20px;
+        }
+        &__quick-insight {
+            width: 300px;
+        }
+        &__slowest-loadspeed {
+            width: calc(100% - 300px);
+        }
+    }
+}
+
+@include bp(tv) {
+    .website-card {
+        &__quick-insight {
+            width: 400px;
+        }
+        &__slowest-loadspeed {
+            width: calc(100% - 400px);
         }
     }
 }

@@ -1,10 +1,83 @@
 .seo-table {
+    padding: 20px 20px 30px 20px;
+    thead {
+        background: #F5F6FA;
+        border: 0 !important;
+    }
+    &__issue {
+        padding: 30px 25px;
+        background-color: rgba(250, 250, 252, .6);
+        border-bottom: 1px solid rgba(0,0,0,.12);
+        min-height: 1px;
+        overflow: hidden;
+        p {
+            margin: 0;
+        }
+    }
+    &__issue-text {
+        width: calc(100% - 55px);
+        float: right;
+    }
+    &__issue-icon {
+        width: 35px;
+        height: 35px;
+        float: left;
+        margin-right: 20px;
+        i {
+            font-size: 35px;
+        }
+    }
+    &__heading {
+        font-size: 18px;
+        color: $danger;
+    }
+    &__description {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+    &__arrow {
+        display: none !important;
+    }
+    table.v-table tbody td:first-child, table.v-table tbody td:not(:first-child), table.v-table tbody th:first-child, table.v-table tbody th:not(:first-child), table.v-table thead td:first-child, table.v-table thead td:not(:first-child), table.v-table thead th:first-child, table.v-table thead th:not(:first-child) {
+        padding: 0 5px;
+    }
+}
 
+.theme--light.v-table {
+    color: $text !important;
+}
+
+.theme--light.v-table thead tr:first-child {
+    border: 0 !important;
+}
+
+table.v-table thead th {
+    font-size: 15px !important;
+    font-weight: bold !important;
+    color: #A3A6B4 !important;
+}
+
+.theme--light.v-table tbody tr:not(:last-child):nth-of-type(even) {
+    border: 0;
 }
 
 .wc-good {
     color: $happy;
+    font-weight: bold;
 }
 .wc-bad {
     color: $danger;
+    font-weight: bold;
+}
+
+@include bp(tv) {
+    .seo-table {
+        &__arrow {
+            display: inline-block !important;
+            font-size: 18px !important;
+            position: relative;
+            top: 5px;
+            color: $primary;
+        }
+    }
 }

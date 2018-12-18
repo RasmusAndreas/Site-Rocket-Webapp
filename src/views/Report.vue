@@ -1,12 +1,14 @@
 <template>
-    <div>
-        <div v-if="$route.params.key">Report for {{ websiteReport.domain }}</div>
+    <div class="report__container">
+        <div v-if="$route.params.key" class="report__header">Report for {{ websiteReport.websiteName }} ({{ websiteReport.domain }})</div>
         <div v-if="settingsSplit().uptime == 1">
-            <div>Uptime</div>
-            <p>
-                This is your overview of the uptime status for the current site. The first graph shows the average uptime, since the website was added to Site-Rocket. Next is your overview of uptime the last 7 days.
-                At last, you see a graph of the longest downtime period since Site-Rocket startet monitoring the website.
-            </p>
+            <div class="report__manchet report__manchet--uptime">
+                <div class="report__manchet-heading">Uptime</div>
+                <p>
+                    This is your overview of the uptime status for the current site. The first graph shows the average uptime, since the website was added to Site-Rocket. Next is your overview of uptime the last 7 days.
+                    At last, you see a graph of the longest downtime period since Site-Rocket startet monitoring the website.
+                </p>
+            </div>
         </div>
         <div v-if="settingsSplit().uptime == 1">
             <div class="website-card" v-if="websiteReport">
@@ -23,11 +25,13 @@
         </div>
 
         <div v-if="settingsSplit().seo == 1">
-            <div>SEO</div>
-            <p>
-                The SEO section provides an overview of URL’s that has issues regarding on page SEO.
-                The focus is primarily on issues relevant to the content editor of the website. These data can be used as a foundation for prioritizing SEO tasks for existing content.
-            </p>
+            <div class="report__manchet report__manchet--seo">
+                <div class="report__manchet-heading">SEO</div>
+                <p>
+                    The SEO section provides an overview of URL’s that has issues regarding on page SEO.
+                    The focus is primarily on issues relevant to the content editor of the website. These data can be used as a foundation for prioritizing SEO tasks for existing content.
+                </p>
+            </div>
         </div>
         <div v-if="settingsSplit().seo == 1">
             <div class="website-card" v-if="websiteReport">
@@ -36,16 +40,24 @@
         </div>
 
         <div v-if="settingsSplit().loadtime == 1">
-            <div>Loadspeed</div>
-            <p>
-                The load speed section gives you an overview of the websites average performance. The slowest pages are the ones we suggest as the most important focuspoints at this time.
-            </p>
+            <div class="report__manchet report__manchet--loadspeed">
+                <div class="report__manchet-heading">Loadspeed</div>
+                <p>
+                    The load speed section gives you an overview of the websites average performance. The slowest pages are the ones we suggest as the most important focuspoints at this time.
+                </p>
+            </div>
         </div>
         <div v-if="settingsSplit().loadtime == 1">
             <div class="website-card" v-if="websiteReport">
-                <loadspeed-quick-insights :urls="allLoadtimesCalc()" header="Quick insight" />
-                <loadspeed-slowest-pages :urls="websiteReport.urls" header="Slowest pages" />
-                <loadspeed-overview :urls="websiteReport.urls" header="Loadspeed overview" />
+                <div class="website-card__quick-insight">
+                    <loadspeed-quick-insights :urls="allLoadtimesCalc()" header="Quick insight" />
+                </div>
+                <div class="website-card__slowest-loadspeed">
+                    <loadspeed-slowest-pages :urls="websiteReport.urls" header="Slowest pages" />
+                </div>
+                <div class="website-card__loadspeed-overview">
+                    <loadspeed-overview :urls="websiteReport.urls" header="Loadspeed overview" />
+                </div>
             </div>
         </div>
 

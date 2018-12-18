@@ -14,11 +14,15 @@
         background-color: $primary;
         height: 100vh;
         color: $white;
+        overflow-y: scroll;
         &__logo {
-            width: 100%;
+            width: 300px;
+            position: fixed;
+            top: 0;
+            left: 0;
             height: 70px;
             padding: 17px 12px;
-            background: rgba(0, 0, 0, .1);
+            background: #546E75;
             margin-bottom: 3px;
         }
         &__logo-img {
@@ -27,16 +31,21 @@
             .cls-2{fill:$white}.cls-3{fill:$secondary}
         }
         &__list {
-            width: 100%;
+            width: 300px;
             display: block;
             min-height: 1px;
             overflow: hidden;
+            background-color: $primary;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            z-index: 1000;
         }
         &__item {
             display: block;
             min-height: 1px;
             overflow: hidden;
-            width: 100%;
+            width: 300px;
             padding: 20px 10px 20px 20px;
             border-left: 5px solid transparent;
             margin-bottom: 1px;
@@ -58,7 +67,10 @@
             width: 100%;
             display: block;
             min-height: 1px;
-            overflow: hidden;
+            overflow-y: scroll;
+            position: absolute;
+            top: 200px;
+            left: 0;
         }
         &__subitem {
             display: block;

@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    overflow: hidden;
+}
+
 #app {
     font-family: 'Source Sans Pro', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -58,5 +62,11 @@
     .app-container {
         width: calc(100% - 300px);
         float: right;
+    }
+}
+
+@media (max-width: 400px) {
+    .mobile-hide {
+        display: none;
     }
 }

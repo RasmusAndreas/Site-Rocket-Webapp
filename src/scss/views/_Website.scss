@@ -1,7 +1,7 @@
 .website {
     padding: 30px 20px;
     &__header {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         min-height: 1px;
         overflow: hidden;
         color: $faded-text;
@@ -27,6 +27,7 @@
     top: 10px;
 }
 .website-header {
+    color: $text;
     font-size: 16px;
     margin-bottom: 20px;
 }

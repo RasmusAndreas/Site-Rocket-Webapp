@@ -4,8 +4,13 @@
             <div class="website__header truncate">
                 <div class="website__header__text">{{ websitedata.websiteName }}</div>
                 <div class="website__header__fadedtext">({{ websitedata.domain }})</div>
+                <div class="share-report" v-if="showReport" @click="showShareReport = true">
+                <span class="share-report__label">Share report</span>
+                    <i class="material-icons share-report__icon">
+                        share
+                    </i>
+                </div>
             </div>
-            <v-btn v-if="showReport" @click="showShareReport = true">SHARE REPORT</v-btn>
             <v-tabs
             v-model="active"
             slider-color="#CE7631">
@@ -53,9 +58,15 @@
                 </v-tab>
                 <v-tab-item v-if="settingsSplit().loadtime == 1">
                     <v-card flat class="website-card" v-if="websitedata">
-                        <loadspeed-quick-insights :urls="allLoadtimesCalc()" header="Quick insight" />
-                        <loadspeed-slowest-pages :urls="websitedata.urls" header="Slowest pages" />
-                        <loadspeed-overview :urls="websitedata.urls" header="Loadspeed overview" />
+                        <div class="website-card__quick-insight">
+                            <loadspeed-quick-insights :urls="allLoadtimesCalc()" header="Quick insight" />
+                        </div>
+                        <div class="website-card__slowest-loadspeed">
+                            <loadspeed-slowest-pages :urls="websitedata.urls" header="Slowest pages" />
+                        </div>
+                        <div class="website-card__loadspeed-overview">
+                            <loadspeed-overview :urls="websitedata.urls" header="Loadspeed overview" />
+                        </div>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item v-else>

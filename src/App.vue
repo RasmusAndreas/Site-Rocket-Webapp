@@ -14,7 +14,11 @@
       </div>
     </div>
     <div v-if="$route.params.key">
-      <report :website="0"/>
+      <div class="report">
+        <div class="report__inner">
+          <report :website="0"/>
+        </div>
+      </div>
     </div>
   </div>
 </template>

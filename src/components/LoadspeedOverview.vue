@@ -1,27 +1,17 @@
 <template>
     <div v-if="calcForOverview().length > 0">
         <div class="website-header">{{ header }}</div>
-        <v-data-table
-        :headers="table_headers"
-        :items="calcForOverview()"
-        :hide-actions="true"
-        no-data-text="Awesome! Your website does not have any pages, that are slower than your set loadspeed."
-        >
-            <template slot="items" slot-scope="props">
-            <td class="">
-                {{ props.item.url }}
-            </td>
-            <td class="">
-                {{ checkNaN(props.item.today) }}s
-            </td>
-            <td class="">
-                {{ checkNaN(props.item.yesterday) }}s
-            </td>
-            <td class="">
-                {{ checkNaN(props.item.avg) }}s
-            </td>
-            </template>
-        </v-data-table>
+        <table cellspacing="0" class="uptime-overview">
+            <tr class="uptime-overview__headers">
+                <td class="uptime-overview__header" :class="header.class" v-for="(header, index) in table_headers" :key="index">{{ header.text }}</td>
+            </tr>
+            <tr class="uptime-overview__data-row" v-for="url in calcForOverview()" :key="url.id">
+                <td class="uptime-overview__data uptime-overview__date">{{ url.url }}</td>
+                <td class="uptime-overview__data mobile-hide">{{ checkNaN(url.today) }}s</td>
+                <td class="uptime-overview__data mobile-hide">{{ checkNaN(url.yesterday) }}s</td>
+                <td class="uptime-overview__data uptime-overview__avg">{{ checkNaN(url.avg) }}s</td>
+            </tr>
+        </table>
     </div>
 </template>
 
@@ -33,18 +23,22 @@ export default {
             table_headers: [{
                 text: 'URL',
                 sortable: false,
+                class: '',
             },
             {
                 text: 'Todays avg.',
-                sortable: false,   
+                sortable: false,
+                class: 'mobile-hide',   
             },
             {
                 text: 'Yesterdays avg.',
                 sortable: false,   
+                class: 'mobile-hide',
             },
             {
-                text: 'Avg. loadspeed (last month)',
+                text: 'Avg. (1 month)',
                 sortable: false,
+                class: '',
             }],
         }
     },
