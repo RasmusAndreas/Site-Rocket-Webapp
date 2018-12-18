@@ -79,14 +79,12 @@ export default {
                 this.settings = this.settings + 'loadtime:0';
                 this.maxloadspeed = 0;
             }
-            alert(this.name + ' ' + this.domain + ' ' + this.settings);
             this.$store.dispatch('updateWebsite', {
                 websiteid: this.$route.params.id,
                 settings: this.settings,
                 websiteName: this.name,
-            }).then(response => {
-                // eslint-disable-next-line
-                console.log(response.data[0]);
+            }).then(() => {
+                this.$emit('updateWebsite');
                 this.navigateTo('/website/' + this.$route.params.id);
             }).catch(error => {
                 this.error = 'E-mail or password is incorrect'

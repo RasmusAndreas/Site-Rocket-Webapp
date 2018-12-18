@@ -1,9 +1,11 @@
 <template>
     <div class="latest-seo" v-if="urls.length > 0">
         <div class="latest-seo__header">Latest SEO issues</div>
-        <div class="latest-seo__item" v-for="url in urls.slice(0, 5).reverse()" :key="url.id">
-            <div class="latest-seo__url truncate">{{ url.url }}</div>
-            <div class="latest-seo__issues">{{ issues(url) }}</div>
+        <div v-for="url in urls.slice(0, 5).reverse()" :key="url.id">
+            <div class="latest-seo__item" v-if="issues(url) != '0 issues'">
+                <div class="latest-seo__url truncate">{{ url.url }}</div>
+                <div class="latest-seo__issues">{{ issues(url) }}</div>
+            </div>
         </div>
     </div>
     <div class="latest-seo" v-else>

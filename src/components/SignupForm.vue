@@ -57,29 +57,37 @@ export default {
             name: '',
             passwordrepeat: '',
             error: '',
+            reg: /.+@.+/,
         }
     },
     methods: {
         signup() {
-            if (this.password == this.passwordrepeat) {
-                this.$store.dispatch('signup', {
-                    email: this.email,
-                    password: this.password,
-                    name: this.name,
-                }).then(() => {
-                    this.$router.push({ name: 'login' })
-                }).catch(error => {
-                    this.error = 'Something went wrong'
-                    // eslint-disable-next-line
-                    console.log(error.response.data.message)
-                })
+            if (this.isEmailValid() == true) {
+                if (this.password == this.passwordrepeat) {
+                    this.$store.dispatch('signup', {
+                        email: this.email,
+                        password: this.password,
+                        name: this.name,
+                    }).then(() => {
+                        this.$router.push({ name: 'login' })
+                    }).catch(error => {
+                        this.error = 'Something went wrong'
+                        // eslint-disable-next-line
+                        console.log(error.response.data.message)
+                    })
+                } else {
+                    this.error = 'The password needs to be the same';
+                }
             } else {
-                this.error = 'The password needs to be the same';
+                this.error = 'Are you sure this email is valid?';
             }
         },
         navigateTo(path) {
             this.$router.push(path);
-        }
+        },
+        isEmailValid() {
+            return (this.email == "")? "" : (this.reg.test(this.email)) ? true : false;
+        },
     },
 }
 </script>

@@ -12,6 +12,7 @@
                 :rules="emailRules"
                 label="E-mail"
                 required
+                disabled
                 ></v-text-field>
             <v-text-field
                 v-model="oldPassword"

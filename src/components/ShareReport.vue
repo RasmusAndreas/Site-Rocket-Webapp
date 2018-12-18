@@ -36,6 +36,8 @@ export default {
                 v => !!v || 'E-mail is required',
                 v => /.+@.+/.test(v) || 'E-mail must be valid'
             ],
+            reg: /.+@.+/,
+            
         }
     },
     props: {
@@ -48,17 +50,21 @@ export default {
         sendMail() {
             const getUrl = window.location;
             const baseUrl = getUrl.protocol + "//" + getUrl.host + "/report/" + this.reportLink;
-            this.$store.dispatch('sendMail', {
-                id: this.$route.params.id,
-                email: this.email,
-                reportLink: baseUrl,
-            }).then(() => {
-                this.$emit('mailSent');
-            }).catch(error => {
-                this.error = 'E-mail or password is incorrect'
-                // eslint-disable-next-line
-                console.log(error.response.data.message)
-            });
+            if (this.isEmailValid() == true) {
+                this.$store.dispatch('sendMail', {
+                    id: this.$route.params.id,
+                    email: this.email,
+                    reportLink: baseUrl,
+                }).then(() => {
+                    this.$emit('mailSent');
+                }).catch(error => {
+                    this.error = 'E-mail or password is incorrect';
+                    // eslint-disable-next-line
+                    console.log(error.response.data.message);
+                });
+            } else {
+                this.error = 'Are you sure this email is valid?';
+            }
         },
         getLink() {
             const getUrl = window.location;
@@ -70,6 +76,9 @@ export default {
         },
         onError() {
             alert('Failed to copy link');
+        },
+        isEmailValid() {
+            return (this.email == "")? "" : (this.reg.test(this.email)) ? true : false;
         },
     },
 }

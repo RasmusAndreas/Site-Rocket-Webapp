@@ -75,13 +75,14 @@
                 </div>
             </v-tabs>
             <side-panel v-if="showSettings" @closePanel="showSettings = false">
-                <website-settings-form :website="websitedata"/>
+                <website-settings-form :website="websitedata" @updateWebsite="updatedWebsite()"/>
             </side-panel>
             <side-panel v-if="showShareReport" @closePanel="showShareReport = false">
                 <share-report :reportLink="websitedata.reportLink" @copyToast="copyToast()" @mailSent="mailSent()"/>
             </side-panel>
             <system-toast :message="shared" @reset="shared = ''" v-if="shared != ''" />
             <system-toast :message="mailsent" @reset="mailsent = ''" v-if="mailsent != ''" />
+            <system-toast :message="updatedWebsiteToast" @reset="updatedWebsiteToast = ''" v-if="updatedWebsiteToast != ''" />
         </div>
     </div>
 </template>
@@ -128,6 +129,7 @@ export default {
         showShareReport: false,
         shared: '',
         mailsent: '',
+        updatedWebsiteToast: '',
       }
     },
     methods: {
@@ -194,6 +196,10 @@ export default {
         mailSent() {
             this.showShareReport = false;
             this.mailsent = 'AWESOME! A MAIL HAS BEEN SENT!';
+        },
+        updatedWebsite() {
+            this.showSettings = false;
+            this.updatedWebsiteToast = 'AWESOME! YOUR WEBSITE WAS UPDATED';
         },
         settingsSplit() {
             const settingsSplit = this.websitedata.featureSettings.split(';');
