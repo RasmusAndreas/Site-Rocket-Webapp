@@ -6,7 +6,8 @@
                 <td class="uptime-overview__header" v-for="(header, index) in table_headers" :key="index">{{ header.text }}</td>
             </tr>
             <tr class="uptime-overview__data-row" v-for="uptime in uptimes" :key="uptime.id">
-                <td class="uptime-overview__data uptime-overview__date">{{ uptime.created_at }}</td>
+                <td class="uptime-overview__data uptime-overview__date">{{ formatDate(uptime.created_at) }}</td>
+                <td class="uptime-overview__data uptime-overview__time">{{ formatTime(uptime.created_at) }}</td>
                 <td class="uptime-overview__data uptime-overview__code">{{ uptime.statusCode }}</td>
                 <td class="uptime-overview__data uptime-overview__checkbox">
                     <div class="uptime-overview__checkbox-inner">
@@ -23,18 +24,24 @@ export default {
     name: 'uptime-overview',
     data() {
         return {
-            table_headers: [{
-                text: 'Date',
-                sortable: false,
-            },
-            {
-                text: 'Error code',
-                sortable: false,   
-            },
-            {
-                text: 'Exclude from stats',
-                sortable: false,   
-            }],
+            table_headers: [
+                {
+                    text: 'Date',
+                    sortable: false,
+                },
+                {
+                    text: 'Time',
+                    sortable: false,
+                },
+                {
+                    text: 'Error code',
+                    sortable: false,   
+                },
+                {
+                    text: 'Exclude from stats',
+                    sortable: false,   
+                }
+            ],
         }
     },
     props: {
@@ -58,6 +65,14 @@ export default {
                 // eslint-disable-next-line
                 console.log(error.response.data.message)
             });
+        },
+        formatDate(created) {
+            const completeDate = new Date(created);
+            return completeDate.getDate() + '/' + (completeDate.getMonth() + 1) + ' - ' + completeDate.getFullYear();
+        },
+        formatTime(created) {
+            const completeDate = new Date(created);
+            return completeDate.getHours() + ':' + completeDate.getMinutes();
         }
     },
 }
