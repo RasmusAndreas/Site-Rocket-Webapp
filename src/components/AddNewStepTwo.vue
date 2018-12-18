@@ -19,9 +19,9 @@
                 required
             ></v-checkbox>
             <div v-if="error">{{ error }}</div>
-            <v-btn 
+            <a class="button-primary float-left" 
                 @click.prevent="next"
-                >NEXT STEP</v-btn>
+                >NEXT STEP</a>
         </v-form>
     </div>
 </template>

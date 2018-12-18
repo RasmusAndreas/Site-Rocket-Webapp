@@ -9,12 +9,17 @@
 }
 
 .logo-siterocket {
+    height: 36px;
     &__on-top {
         z-index: 3;
         position: fixed;
         top: 16px;
         left: 16px;
     }
+}
+.cls-2{fill:$primary}.cls-3{fill:$secondary}
+.greentextlogo {
+    fill: $primary;
 }
 
 @keyframes headerimg {

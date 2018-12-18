@@ -30,10 +30,10 @@
                 @click:append="show = !show"
             ></v-text-field>
             <div v-if="error">{{ error }}</div>
-            <v-btn 
+            <a class="button-primary float-left"
                 @click.prevent="signup"
-                >SIGN UP</v-btn>
-            <v-btn @click="navigateTo('/login')" outline>BACK TO LOGIN</v-btn>
+                >SIGN UP</a>
+            <a class="button-outline-primary float-left twobutton-margin" @click="navigateTo('/login')" outline>BACK TO LOGIN</a>
         </v-form>
     </div>
 </template>

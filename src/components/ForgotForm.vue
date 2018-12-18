@@ -7,10 +7,10 @@
             required
             ></v-text-field>
             <div v-if="error">{{ error }}</div>
-            <v-btn 
+            <a class="button-secondary float-left"
             @click.prevent="forgot"
-            >Send reset link</v-btn>
-            <v-btn @click="navigateTo('/login')" outline>BACK TO LOGIN</v-btn>
+            >Send link</a>
+            <a class="button-outline-secondary float-left twobutton-margin" @click="navigateTo('/login')" outline>BACK TO LOGIN</a>
     </v-form>
 </template>
 

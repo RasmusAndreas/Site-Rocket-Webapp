@@ -32,8 +32,8 @@
             </tr>
         </table>
         <p>To start receiving data, make sure to integrate the SiteRocket tracking script on your website.</p>
-        <v-btn @click="navigateTo('/website/'+newWebsite.id+'/settings')">Change settings</v-btn>
-        <v-btn @click="next">Integration</v-btn>
+        <a class="button-outline-primary float-left" @click="navigateTo('/website/'+newWebsite.id+'/settings')">Change settings</a>
+        <a class="button-primary float-left twobutton-margin" @click="next">Integration</a>
     </div>
 </template>
 

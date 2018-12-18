@@ -5,7 +5,10 @@
                 <div class="website__header__text">{{ websitedata.websiteName }}</div>
                 <div class="website__header__fadedtext">({{ websitedata.domain }})</div>
             </div>
-            <v-btn v-if="showReport" @click="showShareReport = true">SHARE REPORT</v-btn>
+            <div class="sharereport" v-if="showReport" @click="showShareReport = true">
+                <p>Share report</p>
+                <v-icon>share</v-icon>
+            </div>
             <v-tabs
             v-model="active"
             slider-color="#CE7631">

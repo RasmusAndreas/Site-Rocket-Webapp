@@ -30,8 +30,8 @@
                 required
             ></v-checkbox>
             <div v-if="error">{{ error }}</div>
-            <v-btn @click.prevent="updateWebsite">UPDATE WEBSITE</v-btn>
-            <v-btn @click="confirmDelete" outline>DELETE WEBSITE</v-btn>
+            <a class="button-primary float-left" @click.prevent="updateWebsite">UPDATE WEBSITE</a>
+            <a class="button-outline-primary float-left twobutton-margin" @click="confirmDelete" outline>DELETE WEBSITE</a>
         </v-form>
     </div>
 </template>

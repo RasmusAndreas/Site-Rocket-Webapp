@@ -39,9 +39,9 @@
                 @click:append="show = !show"
             ></v-text-field>
             <div v-if="error">{{ error }}</div>
-            <v-btn @click.prevent="update">Update</v-btn>
+            <a class="button-primary float-left" @click.prevent="update">Update</a>
         </v-form>
-        <v-btn outline @click="logout">SIGN OUT</v-btn>
+        <a class="button-outline-secondary float-left twobutton-margin" @click="logout">SIGN OUT</a>
     </div>
 </template>
 
