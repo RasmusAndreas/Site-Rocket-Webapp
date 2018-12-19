@@ -48,6 +48,11 @@
                     <td>
                         <i class="material-icons seo-table__arrow" :style="props.expanded ? 'transform: rotate(90deg);' : 'transform: rotate(0deg);'">keyboard_arrow_right</i>
                         {{ props.item.url }}
+                        <a :href="props.item.url" class="new-window-icon" target="_blank" title="Open page in a new tab">
+                            <i class="material-icons">
+                                open_in_new
+                            </i>
+                        </a>
                     </td>
 
                     <td class="text-xs-center" v-if="props.item.title >= 50 && props.item.title <= 70"><v-icon color="green">check_circle_outline</v-icon></td>

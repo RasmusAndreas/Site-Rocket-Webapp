@@ -22,10 +22,22 @@
     z-index: 1001;
 }
 
+.mobile-panel {
+    .sidepanel {
+        width: 100%;
+    }
+}
+
 @include bp(tablet) {
     .sidepanel {
-        width: 85%;
+        width: 70%;
         padding: 100px;
+    }
+    .mobile-panel {
+        .sidepanel {
+            width: 70%;
+            padding: 100px;
+        }
     }
 }
 
@@ -34,5 +46,12 @@
         width: 50%;
         max-width: 800px;
         padding: 120px;
+    }
+    .mobile-panel {
+        .sidepanel {
+            width: 50%;
+            max-width: 800px;
+            padding: 120px;
+        }
     }
 }
