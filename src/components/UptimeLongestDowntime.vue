@@ -28,9 +28,9 @@ export default {
                 if (uptime.excludeDowntime == 0) {
                     const downtimeDate = new Date(uptime.created_at);
                     if (previousDown) {
-                        if (downtimeDate - previousDown <= 300000) {
+                        if (previousDown - downtimeDate <= 300000) {
                             temp++;
-                        } else if (downtimeDate - previousDown > 300000) {
+                        } else if (previousDown - downtimeDate > 300000) {
                             longestDowntimes.push({amount: temp * 5, date: downtimeDate.getDate() + '/' + (downtimeDate.getMonth() + 1) + '-' + (downtimeDate.getYear() + 1900), percent: 0});
                             temp = 1;
                             previousDown = new Date(uptime.created_at);
