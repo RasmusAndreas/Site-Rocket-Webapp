@@ -63,13 +63,13 @@ export default {
         },
         getUptimes() {
             let allUptimesWeek = [];
+            allUptimesWeek.push(this.getUptimesForWeek(0));
             allUptimesWeek.push(this.getUptimesForWeek(1));
             allUptimesWeek.push(this.getUptimesForWeek(2));
             allUptimesWeek.push(this.getUptimesForWeek(3));
             allUptimesWeek.push(this.getUptimesForWeek(4));
             allUptimesWeek.push(this.getUptimesForWeek(5));
             allUptimesWeek.push(this.getUptimesForWeek(6));
-            allUptimesWeek.push(this.getUptimesForWeek(7));
             return allUptimesWeek;
         }
     },
