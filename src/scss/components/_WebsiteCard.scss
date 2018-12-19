@@ -61,6 +61,9 @@
             width: 50%;
             float: left;
         }
+        &__loadspeed-overview {
+            width: 100%;
+        }
     }
 }
 
@@ -105,14 +108,17 @@
     .website-card {
         &__total-uptime {
             width: 300px;
+            height: 345px;
             float: left;
         }
         &__week-uptime {
             width: 560px;
+            height: 345px;
             float: left;
         }
         &__longest-uptime {
             border: 0;
+            height: 345px;
             width: calc(100% - 860px);
             float: left;
         }

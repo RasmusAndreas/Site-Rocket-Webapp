@@ -72,7 +72,11 @@ export default {
         },
         formatTime(created) {
             const completeDate = new Date(created);
-            return completeDate.getHours() + ':' + completeDate.getMinutes();
+            let minutes = completeDate.getMinutes();
+            if(minutes < 10) {
+                minutes = '0' + minutes;
+            }
+            return completeDate.getHours() + ':' + minutes;
         }
     },
 }
