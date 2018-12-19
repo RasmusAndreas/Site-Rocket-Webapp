@@ -5,6 +5,8 @@ import Forgot from './views/Forgot.vue'
 import Website from './views/Website.vue'
 import Reset from './views/Reset.vue'
 import Report from './views/Report.vue'
+import Login from './views/Login.vue'
+import Signup from './views/Signup.vue'
 
 Vue.use(Router)
 
@@ -47,7 +49,7 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
+      component: Login,
       meta: {
         requiresVisitor: true,
       },
@@ -55,7 +57,7 @@ export default new Router({
     {
       path: '/signup',
       name: 'signup',
-      component: () => import(/* webpackChunkName: "signup" */ './views/Signup.vue'),
+      component: Signup,
       meta: {
         requiresVisitor: true,
       },
