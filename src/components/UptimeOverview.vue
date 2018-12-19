@@ -16,6 +16,7 @@
                 </td>
             </tr>
         </table>
+        <div class="no-downtime" v-if="uptimes.length == 0">Wow! no downtime at all!</div>
     </div>
 </template>
 
