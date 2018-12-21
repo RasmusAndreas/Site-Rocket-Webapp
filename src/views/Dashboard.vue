@@ -93,6 +93,7 @@ export default {
       this.addedNewSuccess = 'Wow! One more site added!'
       this.step++;
       this.newWebsite = {};
+      setTimeout(function(){ window.location.reload(); }, 3000);
     },
   },
   computed: {
