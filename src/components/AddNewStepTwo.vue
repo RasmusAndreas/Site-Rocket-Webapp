@@ -2,7 +2,7 @@
     <div>
         <h1 class="header-caps">MONITOR SETTINGS</h1>
         <p>Choose which features you want enabled for the domain.</p>
-        <v-form v-model="valid">
+        <v-form v-model="valid" class="sidepanel__form">
             <v-checkbox
                 v-model="checkuptime"
                 label="Enable uptime"
@@ -19,10 +19,10 @@
                 required
             ></v-checkbox>
             <div v-if="error">{{ error }}</div>
-            <a class="button-primary float-left" 
-                @click.prevent="next"
-                >NEXT STEP</a>
         </v-form>
+        <a class="button-primary float-left" 
+            @click.prevent="next"
+        >NEXT STEP</a>
     </div>
 </template>
 

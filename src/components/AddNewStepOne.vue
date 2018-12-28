@@ -2,7 +2,7 @@
     <div>
         <h1 class="header-caps">CREATE MONITOR</h1>
         <p>Use the form below to start creating a monitor.</p>
-        <v-form v-model="valid">
+        <v-form v-model="valid" class="sidepanel__form">
             <v-text-field
                 v-model="name"
                 label="Name"
@@ -14,10 +14,10 @@
                 required
                 ></v-text-field>
             <div v-if="error">{{ error }}</div>
-            <a class="button-primary float-left"
-                @click.prevent="next"
-                >NEXT STEP</a>
         </v-form>
+        <a class="button-primary float-left"
+            @click.prevent="next"
+        >NEXT STEP</a>
     </div>
 </template>
 

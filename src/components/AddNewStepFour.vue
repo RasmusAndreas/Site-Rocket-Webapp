@@ -6,7 +6,7 @@
             @focus="$event.target.select()"
             readonly
             :rows="13"
-            class="snippet"
+            class="snippet sidepanel__form"
             name="input-7-1"
             label="Integration snippet"
             :value="snippet"

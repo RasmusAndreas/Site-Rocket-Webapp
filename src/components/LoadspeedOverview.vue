@@ -115,7 +115,6 @@ export default {
     },
     created() {
         this.calcForOverview();
-        console.log(this.calcForOverview());
     },
 }
 </script>

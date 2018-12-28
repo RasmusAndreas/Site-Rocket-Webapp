@@ -4,7 +4,7 @@
         <p>Use the form below to send a link to the report to
             a e-mail of your choice. The link will always be up
             to date with the latest data.</p>
-        <v-form v-model="valid">
+        <v-form v-model="valid" class="sidepanel__form">
             <v-text-field
                 v-model="email"
                 :rules="emailRules"
@@ -12,14 +12,14 @@
                 required
                 ></v-text-field>
             <div v-if="error">{{ error }}</div>
-            <v-btn @click.prevent="sendMail">Send mail</v-btn>
-            <v-btn 
-            outline 
+        </v-form>
+        <a class="button-primary float-left" @click.prevent="sendMail">Send mail</a>
+        <a 
+            class="button-outline-primary float-left twobutton-margin"
             v-clipboard:copy="link"
             v-clipboard:success="onCopy"
             v-clipboard:error="onError"
-            >Copy link</v-btn>
-        </v-form>
+        >Copy link</a>
     </div>
 </template>
 

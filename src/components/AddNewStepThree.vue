@@ -2,7 +2,7 @@
     <div>
         <h1 class="header-caps">BLAST OFF!</h1>
         <p>The website is now added, and ready to receive data.</p>
-        <table>
+        <table class="sidepanel__form">
             <tr>
                 <td>Website name:</td>
                 <td>{{ newWebsite.websiteName }}</td>

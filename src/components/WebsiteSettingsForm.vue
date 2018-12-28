@@ -2,7 +2,7 @@
     <div>
         <h1 class="header-caps">WEBSITE SETTINGS</h1>
         <p>Use the form below to edit settings for the website.</p>
-        <v-form v-model="valid">
+        <v-form v-model="valid" class="sidepanel__form">
             <v-text-field
                 v-model="name"
                 label="Name"
