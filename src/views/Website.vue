@@ -99,7 +99,7 @@
             <system-toast :message="shared" @reset="shared = ''" v-if="shared != ''" />
             <system-toast :message="mailsent" @reset="mailsent = ''" v-if="mailsent != ''" />
             <system-toast :message="updatedWebsiteToast" @reset="updatedWebsiteToast = ''" v-if="updatedWebsiteToast != ''" />
-            <div class="settings-menu" v-if="showSettingsMenu">
+            <div class="settings-menu" v-if="showSettingsMenu" v-on-clickaway="away">
                 <ul class="settings-menu__list">
                     <li class="settings-menu__item" @click="showSettings = true; showSettingsMenu = false">Settings</li>
                     <li class="settings-menu__item" @click="showIntegration = true; showSettingsMenu = false">Integration</li>
@@ -124,9 +124,13 @@ import ShareReport from '../components/ShareReport.vue';
 import SystemToast from '../components/SystemToast.vue';
 import Report from '../views/Report.vue';
 import AddNewStepFour from '../components/AddNewStepFour.vue';
+import { directive as onClickaway } from 'vue-clickaway';
 
 export default {
     name: 'website',
+    directives: {
+        onClickaway: onClickaway,
+    },
     components: {
         LoadspeedQuickInsights,
         LoadspeedSlowestPages,
@@ -235,6 +239,9 @@ export default {
                 obj[split[0]] = split[1];
             }
             return obj;
+        },
+        away() {
+          this.showSettingsMenu = false;
         },
     },
     watch: {
