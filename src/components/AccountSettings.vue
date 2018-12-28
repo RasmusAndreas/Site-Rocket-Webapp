@@ -1,8 +1,8 @@
 <template>
     <div>
-        <h1 class="header-caps">WELCOME ABOARD</h1>
-        <p>Please fill out the form below to create an account.</p>
-        <v-form v-model="valid">
+        <h1 class="header-caps">Account settings</h1>
+        <p>Here you can edit your account details, and reset your password.</p>
+        <v-form v-model="valid" class="sidepanel__form">
             <v-text-field
             v-model="name"
             label="Company / Name"
@@ -39,8 +39,8 @@
                 @click:append="show = !show"
             ></v-text-field>
             <div v-if="error">{{ error }}</div>
-            <a class="button-primary float-left" @click.prevent="update">Update</a>
         </v-form>
+        <a class="button-primary float-left" @click.prevent="update">Update</a>
         <a class="button-outline-secondary float-left twobutton-margin" @click="logout">SIGN OUT</a>
     </div>
 </template>

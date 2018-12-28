@@ -5,7 +5,9 @@
         <side-nav />
         <div class="app-container">
           <top-bar />
-          <router-view/>
+          <transition name="route-anim">
+            <router-view/>
+          </transition>
         </div>
       </div>
       <div v-else>
