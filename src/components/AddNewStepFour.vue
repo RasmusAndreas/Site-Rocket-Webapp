@@ -35,7 +35,7 @@ export default {
             const loadtime = '<script>window.onload=function(){var loadTime = window.performance.timing.domComplete-window.performance.timing.navigationStart;';
             const vars = "var websiteID='" + this.newWebsite.id + "';var apiKey = '" + this.apikey + "';var pixelUrl='http://sovid.dk/scraper.php';";
             const addscript = 'document.getElementById'+'('+'"siterocket"'+')'+'.src=pixelUrl+"?website="+websiteID+"&apikey="+apiKey+"&loadtime="+loadTime;'+'}'+''+'<'+'/script>';
-            const image = '<img style="opacity: 0;" id="siterocket" />';
+            const image = '<img style="opacity: 0;" id="siterocket" alt="SiteRocket Tracking" />';
             const endingcomment = '<!-- End Site-Rocket Tracking Pixel -->';
             const completescript = startcomment + loadtime + vars + addscript + image + endingcomment;
             return completescript;
